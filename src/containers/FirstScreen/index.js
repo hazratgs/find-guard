@@ -16,7 +16,7 @@ export default class FirstScreen extends PureComponent {
         <Content>
           <Title>Найди подходящую<br/>охрану или место работы</Title>
           <Description>Крупнейшая база частных охранников с лицензией на оружие.</Description>
-          <Button>Зарегистрироваться и разместить резюме</Button>
+          <Button to='/main/register'>Зарегистрироваться и разместить резюме</Button>
         </Content>
       </Container>
     )

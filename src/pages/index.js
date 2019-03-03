@@ -19,6 +19,7 @@ export default class Pages extends PureComponent {
       <Fragment>
         <Switch>
           <Route path='/' exact component={Main} />
+          <Route path='/main' component={Main} />
           <Route component={NotFound} />
         </Switch>
       </Fragment>

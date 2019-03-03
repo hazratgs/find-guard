@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   width: 100vw;
@@ -43,7 +44,7 @@ export const Description = styled.p`
   padding: 0;
 `
 
-export const Button = styled.a`
+export const Button = styled(Link)`
   background: #2B93FE;
   border-radius: 8px;
   color: #fff;
@@ -54,6 +55,7 @@ export const Button = styled.a`
   line-height: 16px;
   cursor: pointer;
   transition: all .3s ease;
+  text-decoration: none;
 
   &:hover {
     opacity: 0.9;
