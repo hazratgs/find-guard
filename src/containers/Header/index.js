@@ -10,7 +10,7 @@ export default class Header extends PureComponent {
     return (
       <Container>
         <Logo src='/img/logo.svg'/>
-        <Button>Войти</Button>
+        <Button to='/main/auth'>Войти</Button>
       </Container>
     )
   }
