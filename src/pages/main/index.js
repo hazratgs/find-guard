@@ -4,9 +4,9 @@ import { withRouter, Switch, Route } from 'react-router-dom'
 import withEvents from '../../utils/withEvents'
 import FirstScreen from '../../containers/FirstScreen'
 
-import Register from '../../containers/Register'
-import Auth from '../../containers/Auth'
-import ForgotPassword from '../../containers/ForgotPassword'
+import Register from '../../components/Register'
+import Auth from '../../components/Auth'
+import ForgotPassword from '../../components/ForgotPassword'
 
 @withRouter
 @withEvents
