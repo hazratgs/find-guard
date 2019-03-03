@@ -9,11 +9,14 @@ export default class Input extends PureComponent {
   change = (e) => this.setState({ value: e.target.value })
 
   render () {
-    const { name } = this.props
+    const { name, mask, small } = this.props
 
     return (
-      <Container>
-        <InputElement onChange={this.change}/>
+      <Container small={small}>
+        <InputElement
+          mask={mask}
+          onChange={this.change}
+        />
         <Name isset={!!this.state.value}>{name}</Name>
       </Container>
     )

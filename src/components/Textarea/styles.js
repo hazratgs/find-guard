@@ -1,6 +1,4 @@
 import styled from 'styled-components'
-// import InputMask from 'react-text-mask'
-import InputMask from 'react-input-mask'
 
 export const Container = styled.div`
   width: 100%;
@@ -8,10 +6,6 @@ export const Container = styled.div`
   margin-bottom: 10px;
   background-color: #fff;
   border-radius: 4px;
-
-  ${props => props.small && `
-    width: 210px;
-  `}
 `
 
 export const Name = styled.span`
@@ -33,11 +27,11 @@ export const Name = styled.span`
   `}
 `
 
-export const Input = styled(InputMask)`
+export const Text = styled.textarea`
   display: block;
   width: 100%;
   border: 0;
-  height: 50px;
+  height: 180px;
   padding: 19px 16px 7px 16px;
   font-family: Ubuntu;
   z-index: 20;
@@ -46,21 +40,9 @@ export const Input = styled(InputMask)`
   font-weight: bold;
   font-size: 16px;
   position: relative;
+  resize: none;
 
   &:focus + span {
     transform: translate(0, 7px) scale(0.85);
-  }
-`
-
-export const WrapperElements = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-  div:first-child {
-    margin-right: 5px!important;
-  }
-
-  div:last-child {
-    margin-left: 5px!important;
   }
 `

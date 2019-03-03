@@ -13,8 +13,8 @@ export default class Dots extends PureComponent {
   }
 
   render () {
-    const items = this.props.items.map((item, i) =>
-      <Item active={this.props.active === i} />
+    const items = this.props.items.map((i) =>
+      <Item key={i} active={this.props.active === i} />
     )
     return (
       <Container>

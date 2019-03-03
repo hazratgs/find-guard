@@ -13,11 +13,11 @@ export default class ProfileFormStepOne extends PureComponent {
         <Input name='Отчество' />
         <Wrapper>
           <Input name='Укажите ваш пол' />
-          <Input name='Дата рождения' />
+          <Input name='Дата рождения' mask="99.99 9999" />
         </Wrapper>
         <Input name='Регион проживания' />
         <Input name='Желаемый регион работы' />
-        <Button>
+        <Button to='/profile/form/step/1'>
           <span>Продолжить</span>
           <img src='/img/next.svg' />
         </Button>
