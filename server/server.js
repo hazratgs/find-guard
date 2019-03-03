@@ -8,7 +8,6 @@ import cookieParser from 'cookie-parser'
 
 import loader from './loader'
 
-
 const app = express()
 const PORT = process.env.PORT || 3001
 
