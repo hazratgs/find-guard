@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import {
   Container,
   Title,
@@ -12,6 +13,7 @@ import {
 } from './styles'
 import BreadCrumbs from '../../components/BreadCrumbs'
 
+@connect(state => ({ profile: state.profile.profile }))
 export default class ProfilePage extends PureComponent {
   state = {
     breadcrumbs: [
@@ -25,24 +27,51 @@ export default class ProfilePage extends PureComponent {
       }
     ],
     about: [
-      { key: 'Пол', value: 'Мужчина' },
-      { key: 'Телефон', value: '+7 916 766 25 32' },
-      { key: 'Тип занятости', value: 'Полная занятость' },
-      { key: 'Регион проживания', value: 'Москва' },
-      { key: 'Электронная почта', value: 'Info@mail.ru' },
-      { key: 'Желаемый график', value: '8-18' },
-      { key: 'Желаемый регион работы', value: 'Москва' },
-      { key: 'Разрешение на оружие', value: 'АГ 33542' },
-      { key: 'Желаемый уровень зарплаты', value: '120 000 рублей' },
-      { key: 'Дата рождения', value: '10.06 1984' },
-      { key: 'Водительские права', value: 'Да' },
+      { key: 'Пол', value: '--' },
+      { key: 'Телефон', value: '--' },
+      { key: 'Тип занятости', value: '--' },
+      { key: 'Регион проживания', value: '--' },
+      { key: 'Электронная почта', value: '--' },
+      { key: 'Желаемый график', value: '--' },
+      { key: 'Желаемый регион работы', value: '--' },
+      { key: 'Разрешение на оружие', value: '--' },
+      { key: 'Желаемый уровень зарплаты', value: '--' },
+      { key: 'Дата рождения', value: '--' },
+      { key: 'Водительские права', value: '--' },
       { key: '', value: '' },
-      { key: 'Профессиональная область', value: 'Персональный охранник' },
-      { key: 'Опыт работы в сфере (лет)', value: '5 лет 2 мес' }
+      { key: 'Профессиональная область', value: '--' },
+      { key: 'Опыт работы в сфере (лет)', value: '--' }
     ]
   }
 
+  static getDerivedStateFromProps (props) {
+    if (props.profile) {
+      const { profile } = props
+      return {
+        about: [
+          { key: 'Пол', value: profile.gender },
+          { key: 'Телефон', value: profile.phone },
+          { key: 'Тип занятости', value: profile.employment },
+          { key: 'Регион проживания', value: profile.regionOfResidence },
+          { key: 'Электронная почта', value: profile.email },
+          { key: 'Желаемый график', value: profile.schedule },
+          { key: 'Желаемый регион работы', value: profile.desiredRegionOfResidence },
+          { key: 'Разрешение на оружие', value: '--' },
+          { key: 'Желаемый уровень зарплаты', value: profile.salary },
+          { key: 'Дата рождения', value: profile.dateOfBirth },
+          { key: 'Водительские права', value: profile.driveryLicense },
+          { key: '', value: '' },
+          { key: 'Профессиональная область', value: profile.professionalArea },
+          { key: 'Опыт работы в сфере (лет)', value: profile.experience }
+        ]
+      }
+    }
+    return null
+  }
+
   render () {
+    const { profile } = this.props
+    console.log(profile)
     const items = this.state.about.map((item, i) => (
       <AboutItem key={i}>
         <Small>{item.key}</Small>
@@ -50,10 +79,14 @@ export default class ProfilePage extends PureComponent {
       </AboutItem>
     ))
 
+    const docs = profile.files.map((item, i) => (
+      <DocsItem key={i}>{item.name} ({(item.size / 1024).toFixed(2)} кб)</DocsItem>
+    ))
+
     return (
       <Container>
         <BreadCrumbs items={this.state.breadcrumbs}/>
-        <Title>Еремеев Илья Викторович</Title>
+        <Title>{profile.lastName} {profile.firstName} {profile.patronymic}</Title>
         <ReadButton to='/profile/form'>
           <img src='/img/read.svg'/>
           Редактировать данные
@@ -63,12 +96,11 @@ export default class ProfilePage extends PureComponent {
         </About>
         <Text>
           <Small>Напишите немного о себе</Small>
-          <p>Понятие «сопроводительное письмо» совсем недавно вошло в повседневную жизнь в связи с развитием интернет-технологий. Обычно это короткие письма, которые сопровождают основной документ и содержат дополнительную информацию для получателя. Под руководством опытного HR-менеджера мы разобрались, какие правила для таких писем существуют в бизнес-среде.</p>
+          <p>{profile.about}</p>
         </Text>
         <Small>Прикрепленные файлы</Small>
         <Docs>
-          <DocsItem>Резюме.doc (127 кб)</DocsItem>
-          <DocsItem>Скан_паспорта.zip (2,6 мб)</DocsItem>
+          {docs}
         </Docs>
       </Container>
     )

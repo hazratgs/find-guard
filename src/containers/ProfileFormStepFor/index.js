@@ -46,7 +46,7 @@ export default class ProfileFormStepFor extends PureComponent {
 
     if (!errors.length) {
       const data = {
-        files: state.lastName
+        files: state.files
       }
 
       this.props.history.push('/profile')
