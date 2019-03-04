@@ -81,13 +81,12 @@ export default class ProfileFormStepOne extends PureComponent {
   }
 
   render () {
-    console.log(this.props.profile)
     return (
       <Container>
         <Input
           name='Фамилия'
           defaultValue={this.state.lastName}
-          onChange={this.change('lastName').bind(this)}
+          onChange={this.change('lastName')}
           error={this.state.errors.includes('lastName')}
         />
         <Input

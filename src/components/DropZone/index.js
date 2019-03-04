@@ -7,11 +7,17 @@ export default class DropZone extends PureComponent {
     files: []
   }
 
-  onDrop = (files) => {
-    this.setState({ files: [...this.state.files, ...files] })
+  onDrop = (data) => {
+    const files = [...this.state.files, ...data]
+    this.setState({ files })
+    this.props.onChange([...this.state.files, ...files])
   }
 
-  remove = (key) => () => this.setState({ files: this.state.files.filter((item, i) => i !== key) })
+  remove = (key) => () => {
+    const files = this.state.files.filter((item, i) => i !== key)
+    this.setState({ files })
+    this.props.onChange(files)
+  }
 
   render () {
     const files = this.state.files.map((item, i) => (

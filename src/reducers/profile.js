@@ -13,13 +13,14 @@ const initialState = {
     desiredRegionOfResidence: '',
     phone: '',
     email: '',
-    driveryLicense: '',
+    driveryLicense: false,
     professionalArea: '',
     experience: '',
     employment: '',
     schedule: '',
     salary: '',
-    about: ''
+    about: '',
+    files: []
   }
 }
 
