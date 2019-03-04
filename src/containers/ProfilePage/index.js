@@ -12,6 +12,7 @@ import {
   DocsItem
 } from './styles'
 import BreadCrumbs from '../../components/BreadCrumbs'
+import Notif from '../../components/Notif'
 
 @connect(state => ({ profile: state.profile.profile }))
 export default class ProfilePage extends PureComponent {
@@ -56,10 +57,10 @@ export default class ProfilePage extends PureComponent {
           { key: 'Электронная почта', value: profile.email },
           { key: 'Желаемый график', value: profile.schedule },
           { key: 'Желаемый регион работы', value: profile.desiredRegionOfResidence },
-          { key: 'Разрешение на оружие', value: '--' },
+          { key: 'Разрешение на оружие', value: '№ ' + profile.weaponNumber },
           { key: 'Желаемый уровень зарплаты', value: profile.salary },
           { key: 'Дата рождения', value: profile.dateOfBirth },
-          { key: 'Водительские права', value: profile.driveryLicense },
+          { key: 'Водительские права', value: '№ ' + profile.driveryLicenseNumber },
           { key: '', value: '' },
           { key: 'Профессиональная область', value: profile.professionalArea },
           { key: 'Опыт работы в сфере (лет)', value: profile.experience }
@@ -86,6 +87,7 @@ export default class ProfilePage extends PureComponent {
     return (
       <Container>
         <BreadCrumbs items={this.state.breadcrumbs}/>
+        <Notif />
         <Title>{profile.lastName} {profile.firstName} {profile.patronymic}</Title>
         <ReadButton to='/profile/form'>
           <img src='/img/read.svg'/>
