@@ -6,6 +6,13 @@ export const Container = styled.div`
   border-radius: 4px;
   padding: 0 10px 0 20px;
   margin-bottom: 10px;
+  box-sizing: border-box;
+  position: relative;
+
+  ${props => props.checked && `
+    padding: 0;
+    border: 0;
+  `}
 `
 
 export const Label = styled.label`
@@ -13,6 +20,13 @@ export const Label = styled.label`
   align-items: center;
   cursor: pointer;
   height: 100%;
+
+  ${props => props.checked && `
+    position: absolute;
+    right: 10px;
+    z-index: 20;
+    top: 0;
+  `}
 
   input {
     display: none;
@@ -35,5 +49,9 @@ export const Label = styled.label`
     border-radius: 4px;
     background-position: center;
     background-repeat: no-repeat;
+
+    ${props => props.checked && `
+      background-color: #EFEFEF;
+    `}
   }
 `

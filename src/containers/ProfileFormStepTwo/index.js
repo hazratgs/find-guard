@@ -21,7 +21,10 @@ export default class ProfileFormStepTwo extends PureComponent {
     init: false,
     phone: '',
     email: '',
-    driveryLicense: '',
+    driveryLicense: false,
+    driveryLicenseNumber: '',
+    weapon: false,
+    weaponNumber: '',
     professionalArea: '',
     experience: '',
     errors: []
@@ -43,6 +46,9 @@ export default class ProfileFormStepTwo extends PureComponent {
         phone: profile.phone,
         email: profile.email,
         driveryLicense: profile.driveryLicense,
+        driveryLicenseNumber: profile.driveryLicenseNumber,
+        weapon: profile.weapon,
+        weaponNumber: profile.weaponNumber,
         professionalArea: profile.professionalArea,
         experience: profile.experience
       }
@@ -58,12 +64,17 @@ export default class ProfileFormStepTwo extends PureComponent {
     if (!isEmail(state.email)) errors.push('email')
     if (state.professionalArea === '') errors.push('professionalArea')
     if (state.experience === '') errors.push('experience')
+    if (state.driveryLicense && state.driveryLicenseNumber.replace(/\D+/g, '').length !== 10) errors.push('driveryLicenseNumber')
+    if (state.weapon && state.weaponNumber.replace(/\D+/g, '').length !== 7) errors.push('weaponNumber')
 
     if (!errors.length) {
       const data = {
         phone: state.phone,
         email: state.email,
         driveryLicense: state.driveryLicense,
+        driveryLicenseNumber: state.driveryLicenseNumber,
+        weapon: state.weapon,
+        weaponNumber: state.weaponNumber,
         professionalArea: state.professionalArea,
         experience: state.experience
       }
@@ -76,6 +87,7 @@ export default class ProfileFormStepTwo extends PureComponent {
   }
 
   render () {
+    console.log(this.state)
     return (
       <Container>
         <Input
@@ -94,7 +106,22 @@ export default class ProfileFormStepTwo extends PureComponent {
         <Checkbox
           text='У вас есть водительские права?'
           defaultValue={this.state.driveryLicense}
+          defaultValueInput={this.state.driveryLicenseNumber}
+          mask='99 99 999999'
+          placeholder='№ водительского удостоверения'
           onChange={this.change('driveryLicense')}
+          changeInput={this.change('driveryLicenseNumber')}
+          error={this.state.errors.includes('driveryLicenseNumber')}
+        />
+        <Checkbox
+          text='У вас есть разрешение на оружие?'
+          defaultValue={this.state.weapon}
+          defaultValueInput={this.state.weaponNumber}
+          onChange={this.change('weapon')}
+          mask='9999999'
+          placeholder='№ разрешения на оружия'
+          changeInput={this.change('weaponNumber')}
+          error={this.state.errors.includes('weaponNumber')}
         />
         <Input
           name='Профессиональная область'
