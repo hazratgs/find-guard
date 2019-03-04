@@ -7,6 +7,7 @@ import { Container, ButtonWrapper, AppTerms } from './styles'
 import DropZone from '../../components/DropZone'
 import Button from '../../components/StepButton'
 import Dots from '../../components/Dots'
+import BackButton from '../../components/BackButton'
 
 @withRouter
 @connect(
@@ -63,6 +64,7 @@ export default class ProfileFormStepFor extends PureComponent {
           <DropZone onChange={this.change('files')} files={this.state.files} />
         </Container>
         <ButtonWrapper>
+          <BackButton to='/profile/form/step/2' />
           <Button handle={this.send}>
             <span>Отправить</span>
             <img src='/img/form-check.svg' />

@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { changeProfile } from '../../actions/profile'
-import { Container } from './styles'
+import { Container, ButtonWrapper } from './styles'
 import Input from '../../components/Input'
 import Button from '../../components/StepButton'
 import Dots from '../../components/Dots'
 import Textarea from '../../components/Textarea'
+import BackButton from '../../components/BackButton'
 
 @withRouter
 @connect(
@@ -96,10 +97,13 @@ export default class ProfileFormStepThree extends PureComponent {
           onChange={this.change('about')}
           error={this.state.errors.includes('about')}
         />
-        <Button handle={this.send}>
-          <span>Продолжить</span>
-          <img src='/img/next.svg' />
-        </Button>
+        <ButtonWrapper>
+          <BackButton to='/profile/form/step/1' />
+          <Button handle={this.send}>
+            <span>Продолжить</span>
+            <img src='/img/next.svg' />
+          </Button>
+        </ButtonWrapper>
         <Dots active={2} />
       </Container>
     )

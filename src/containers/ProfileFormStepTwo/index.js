@@ -4,11 +4,12 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { changeProfile } from '../../actions/profile'
-import { Container } from './styles'
+import { Container, ButtonWrapper } from './styles'
 import Input from '../../components/Input'
 import Button from '../../components/StepButton'
 import Dots from '../../components/Dots'
 import Checkbox from '../../components/Checkbox'
+import BackButton from '../../components/BackButton'
 
 @withRouter
 @connect(
@@ -108,10 +109,13 @@ export default class ProfileFormStepTwo extends PureComponent {
           onChange={this.change('experience')}
           error={this.state.errors.includes('experience')}
         />
-        <Button handle={this.send}>
-          <span>Продолжить</span>
-          <img src='/img/next.svg' />
-        </Button>
+        <ButtonWrapper>
+          <BackButton to='/profile/form' />
+          <Button handle={this.send}>
+            <span>Продолжить</span>
+            <img src='/img/next.svg' />
+          </Button>
+        </ButtonWrapper>
         <Dots active={1} />
       </Container>
     )

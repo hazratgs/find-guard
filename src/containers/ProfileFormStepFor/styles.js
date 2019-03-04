@@ -7,6 +7,7 @@ export const Container = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 `
 
 export const AppTerms = styled.p`
