@@ -1,8 +1,18 @@
 import React, { PureComponent } from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { successAuthorization } from '../../actions/profile'
 import isEmail from 'validator/lib/isEmail'
 import Form from '../../containers/Form'
 
+@withRouter
+@connect(
+  state => ({ }),
+  dispatch => ({
+    successAuthorization: bindActionCreators(successAuthorization, dispatch)
+  })
+)
 export default class Auth extends PureComponent {
   state = {
     inputs: [
@@ -17,7 +27,12 @@ export default class Auth extends PureComponent {
   }
 
   send = () => {
-    this.setState({ requestFailed: 'Не верное имя или пароль' })
+    if (this.state.email === 'user@example.com' && this.state.password === '123456') {
+      this.props.successAuthorization(true)
+      this.props.history.push('/profile')
+    } else {
+      this.setState({ requestFailed: 'Не верное имя или пароль' })
+    }
   }
 
   change = (name) => (e) => {

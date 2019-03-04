@@ -12,6 +12,10 @@ export const Container = styled.div`
   ${props => props.small && `
     width: 210px;
   `}
+
+  ${props => props.error && `
+    box-shadow: 0 0 0 2px red;
+  `}
 `
 
 export const Name = styled.span`
