@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import { changeProfile } from '../../actions/profile'
 import { Container, ButtonWrapper } from './styles'
 import Input from '../../components/Input'
+import Select from '../../components/Select'
 import Button from '../../components/StepButton'
 import Dots from '../../components/Dots'
 import Checkbox from '../../components/Checkbox'
@@ -49,7 +50,7 @@ export default class ProfileFormStepTwo extends PureComponent {
         driveryLicenseNumber: profile.driveryLicenseNumber,
         weapon: profile.weapon,
         weaponNumber: profile.weaponNumber,
-        professionalArea: profile.professionalArea,
+        // professionalArea: profile.professionalArea,
         experience: profile.experience
       }
     }
@@ -62,7 +63,7 @@ export default class ProfileFormStepTwo extends PureComponent {
     if (state.phone === '') errors.push('phone')
     if (state.email === '') errors.push('email')
     if (!isEmail(state.email)) errors.push('email')
-    if (state.professionalArea === '') errors.push('professionalArea')
+    // if (state.professionalArea === '') errors.push('professionalArea')
     if (state.experience === '') errors.push('experience')
     if (state.driveryLicense && state.driveryLicenseNumber.replace(/\D+/g, '').length !== 10) errors.push('driveryLicenseNumber')
     if (state.weapon && state.weaponNumber.replace(/\D+/g, '').length !== 7) errors.push('weaponNumber')
@@ -75,7 +76,7 @@ export default class ProfileFormStepTwo extends PureComponent {
         driveryLicenseNumber: state.driveryLicenseNumber,
         weapon: state.weapon,
         weaponNumber: state.weaponNumber,
-        professionalArea: state.professionalArea,
+        // professionalArea: state.professionalArea,
         experience: state.experience
       }
 
@@ -87,7 +88,6 @@ export default class ProfileFormStepTwo extends PureComponent {
   }
 
   render () {
-    console.log(this.state)
     return (
       <Container>
         <Input
@@ -123,13 +123,20 @@ export default class ProfileFormStepTwo extends PureComponent {
           changeInput={this.change('weaponNumber')}
           error={this.state.errors.includes('weaponNumber')}
         />
-        <Input
+        {/* <Input
           name='Профессиональная область'
           defaultValue={this.state.professionalArea}
           onChange={this.change('professionalArea')}
           error={this.state.errors.includes('professionalArea')}
-        />
-        <Input
+        /> */}
+        <Select
+          items={[
+            { key: '', value: '' },
+            { key: 'Нет опыта', value: 'Нет опыта' },
+            { key: 'От 1 года до 3 лет', value: 'От 1 года до 3 лет' },
+            { key: 'От 3 до 6 лет', value: 'От 3 до 6 лет' },
+            { key: 'Более 6 лет', value: 'Более 6 лет' }
+          ]}
           name='Опыт работы в сфере (лет)'
           small={true}
           defaultValue={this.state.experience}

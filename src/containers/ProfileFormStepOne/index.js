@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { changeProfile } from '../../actions/profile'
 import { Container } from './styles'
 import Input, { Wrapper } from '../../components/Input'
+import Select from '../../components/Select'
 import Button from '../../components/StepButton'
 import Dots from '../../components/Dots'
 
@@ -102,7 +103,11 @@ export default class ProfileFormStepOne extends PureComponent {
           error={this.state.errors.includes('patronymic')}
         />
         <Wrapper>
-          <Input
+          <Select
+            items={[
+              { key: 'Мужской', value: 'Male' },
+              { key: 'Женский', value: 'Female' }
+            ]}
             name='Укажите ваш пол'
             defaultValue={this.state.gender}
             onChange={this.change('gender')}
@@ -116,13 +121,25 @@ export default class ProfileFormStepOne extends PureComponent {
             error={this.state.errors.includes('dateOfBirth')}
           />
         </Wrapper>
-        <Input
+        <Select
+          items={[
+            { key: '', value: '' },
+            { key: 'Россия', value: 'Russia' },
+            { key: 'Украина', value: 'Ukraine' },
+            { key: 'Казахстан', value: 'Kazakhstan' }
+          ]}
           name='Регион проживания'
           defaultValue={this.state.regionOfResidence}
           onChange={this.change('regionOfResidence')}
           error={this.state.errors.includes('regionOfResidence')}
         />
-        <Input
+        <Select
+          items={[
+            { key: '', value: '' },
+            { key: 'Россия', value: 'Russia' },
+            { key: 'Украина', value: 'Ukraine' },
+            { key: 'Казахстан', value: 'Kazakhstan' }
+          ]}
           name='Желаемый регион работы'
           defaultValue={this.state.desiredRegionOfResidence}
           onChange={this.change('desiredRegionOfResidence')}

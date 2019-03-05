@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { changeProfile } from '../../actions/profile'
 import { Container, ButtonWrapper } from './styles'
 import Input from '../../components/Input'
+import Select from '../../components/Select'
 import Button from '../../components/StepButton'
 import Dots from '../../components/Dots'
 import Textarea from '../../components/Textarea'
@@ -73,13 +74,29 @@ export default class ProfileFormStepThree extends PureComponent {
   render () {
     return (
       <Container>
-        <Input
+        <Select
+          items={[
+            { key: '', value: '' },
+            { key: 'Полная занятость', value: 'Полная занятость' },
+            { key: 'Частичная занятость', value: 'Частичная занятость' },
+            { key: 'Проектная/Временная работа', value: 'Проектная/Временная работа' },
+            { key: 'Волонтерство', value: 'Волонтерство' },
+            { key: 'Стажировка', value: 'Стажировка' }
+          ]}
           name='Тип занятости'
           defaultValue={this.state.employment}
           onChange={this.change('employment')}
           error={this.state.errors.includes('employment')}
         />
-        <Input
+        <Select
+          items={[
+            { key: '', value: '' },
+            { key: 'Полный день', value: 'Полный день' },
+            { key: 'Сменный график', value: 'Сменный график' },
+            { key: 'Гибкий график', value: 'Гибкий график' },
+            { key: 'Удаленная работа', value: 'Удаленная работа' },
+            { key: 'Вахтовый метод', value: 'Вахтовый метод' }
+          ]}
           name='Желаемый график'
           defaultValue={this.state.schedule}
           onChange={this.change('schedule')}
