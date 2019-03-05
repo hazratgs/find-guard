@@ -105,6 +105,7 @@ export default class ProfileFormStepOne extends PureComponent {
         <Wrapper>
           <Select
             items={[
+              { key: '', value: '' },
               { key: 'Мужской', value: 'Male' },
               { key: 'Женский', value: 'Female' }
             ]}
