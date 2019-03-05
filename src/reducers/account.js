@@ -44,7 +44,10 @@ const handleErrorLogin = (state) => ({
 
 const handleGetSuccessAccount = (state, payload) => ({
   ...state,
-  account: payload,
+  account: {
+    ...state.account,
+    ...payload
+  },
   errorAccount: false
 })
 

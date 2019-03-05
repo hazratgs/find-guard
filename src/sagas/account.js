@@ -1,5 +1,6 @@
 import { takeLatest, call, put } from 'redux-saga/effects'
 import * as actions from '../actions/account'
+import * as regionsActions from '../actions/regions'
 import axios from 'axios'
 import cookies from 'js-cookie'
 const api = API_SERVER // eslint-disable-line
@@ -16,6 +17,7 @@ function* login (action) {
     cookies.set('token', token, { expires: 7, path: '/' })
     yield put(actions.successLogin(token))
     yield put(actions.getAccount())
+    yield put(regionsActions.getRegions())
   } catch (e) {
     yield put(actions.errorLogin())
   }
@@ -41,6 +43,7 @@ function* isAuthenticate () {
       if (request.data !== '') {
         yield put(actions.successLogin(token))
         yield put(actions.getAccount())
+        yield put(regionsActions.getRegions())
       }
     }
   } catch (e) {

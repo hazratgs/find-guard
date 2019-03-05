@@ -14,7 +14,7 @@ import {
 import BreadCrumbs from '../../components/BreadCrumbs'
 import Notif from '../../components/Notif'
 
-@connect(state => ({ profile: state.profile.profile }))
+@connect(state => ({ account: state.account.account }))
 export default class ProfilePage extends PureComponent {
   state = {
     breadcrumbs: [
@@ -46,24 +46,24 @@ export default class ProfilePage extends PureComponent {
   }
 
   static getDerivedStateFromProps (props) {
-    if (props.profile) {
-      const { profile } = props
+    if (props.account) {
+      const { account } = props
       return {
         about: [
-          { key: 'Пол', value: profile.gender },
-          { key: 'Телефон', value: profile.phone },
-          { key: 'Тип занятости', value: profile.employment },
-          { key: 'Регион проживания', value: profile.regionOfResidence },
-          { key: 'Электронная почта', value: profile.email },
-          { key: 'Желаемый график', value: profile.schedule },
-          { key: 'Желаемый регион работы', value: profile.desiredRegionOfResidence },
-          { key: 'Разрешение на оружие', value: '№ ' + profile.weaponNumber },
-          { key: 'Желаемый уровень зарплаты', value: profile.salary },
-          { key: 'Дата рождения', value: profile.dateOfBirth },
-          { key: 'Водительские права', value: '№ ' + profile.driveryLicenseNumber },
+          { key: 'Пол', value: account.gender },
+          { key: 'Телефон', value: account.phone },
+          { key: 'Тип занятости', value: account.employment },
+          { key: 'Регион проживания', value: account.regionOfResidence },
+          { key: 'Электронная почта', value: account.email },
+          { key: 'Желаемый график', value: account.schedule },
+          { key: 'Желаемый регион работы', value: account.desiredRegionOfResidence },
+          { key: 'Разрешение на оружие', value: '№ ' + account.weaponNumber },
+          { key: 'Желаемый уровень зарплаты', value: account.salary },
+          { key: 'Дата рождения', value: account.dateOfBirth },
+          { key: 'Водительские права', value: '№ ' + account.driveryLicenseNumber },
           { key: '', value: '' },
-          { key: 'Профессиональная область', value: profile.professionalArea },
-          { key: 'Опыт работы в сфере (лет)', value: profile.experience }
+          { key: 'Профессиональная область', value: account.professionalArea },
+          { key: 'Опыт работы в сфере (лет)', value: account.experience }
         ]
       }
     }
@@ -71,8 +71,8 @@ export default class ProfilePage extends PureComponent {
   }
 
   render () {
-    const { profile } = this.props
-    console.log(profile)
+    const { account } = this.props
+    console.log(account)
     const items = this.state.about.map((item, i) => (
       <AboutItem key={i}>
         <Small>{item.key}</Small>
@@ -80,7 +80,7 @@ export default class ProfilePage extends PureComponent {
       </AboutItem>
     ))
 
-    const docs = profile.files.map((item, i) => (
+    const docs = account.files.map((item, i) => (
       <DocsItem key={i}>{item.name} ({(item.size / 1024).toFixed(2)} кб)</DocsItem>
     ))
 
@@ -88,7 +88,7 @@ export default class ProfilePage extends PureComponent {
       <Container>
         <BreadCrumbs items={this.state.breadcrumbs}/>
         <Notif />
-        <Title>{profile.lastName} {profile.firstName} {profile.patronymic}</Title>
+        <Title>{account.lastName} {account.firstName} {account.patronymic}</Title>
         <ReadButton to='/profile/form'>
           <img src='/img/read.svg'/>
           Редактировать данные
@@ -98,7 +98,7 @@ export default class ProfilePage extends PureComponent {
         </About>
         <Text>
           <Small>Напишите немного о себе</Small>
-          <p>{profile.about}</p>
+          <p>{account.about}</p>
         </Text>
         <Small>Прикрепленные файлы</Small>
         <Docs>
