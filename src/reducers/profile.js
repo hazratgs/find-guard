@@ -2,7 +2,7 @@ import { createReducer } from 'redux-act'
 import * as actions from '../actions/profile'
 
 const initialState = {
-  login: null,
+  account: null,
   profile: {
     lastName: '',
     firstName: '',

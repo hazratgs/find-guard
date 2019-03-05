@@ -1,0 +1,7 @@
+export const LOGIN = 'LOGIN'
+export const SUCCESS_LOGIN = 'SUCCESS_LOGIN'
+export const ERROR_LOGIN = 'ERROR_LOGIN'
+
+export const GET_ACCOUNT = 'GET_ACCOUNT'
+export const GET_SUCCESS_ACCOUNT = 'GET_SUCCESS_ACCOUNT'
+export const ERROR_GET_ACCOUNT = 'ERROR_GET_ACCOUNT'

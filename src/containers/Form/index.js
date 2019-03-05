@@ -27,7 +27,8 @@ export default class FormWrapper extends PureComponent {
     agreement: propTypes.array,
     button: propTypes.string,
     link: propTypes.string,
-    linkPath: propTypes.string
+    linkPath: propTypes.string,
+    errorLogin: propTypes.bool
   }
 
   render () {
@@ -44,8 +45,8 @@ export default class FormWrapper extends PureComponent {
 
     return (
       <Container>
-        {this.props.state.requestFailed && (
-          <ErrorMessage>{this.props.state.requestFailed}</ErrorMessage>
+        {this.props.errorLogin && (
+          <ErrorMessage>Не верное имя или пароль</ErrorMessage>
         )}
         {this.props.state.successMessage && (
           <SuccessMessage>{this.props.state.successMessage}</SuccessMessage>

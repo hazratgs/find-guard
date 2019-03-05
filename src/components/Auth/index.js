@@ -1,16 +1,19 @@
 import React, { PureComponent } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { successAuthorization } from '../../actions/profile'
+import { login } from '../../actions/account'
 import isEmail from 'validator/lib/isEmail'
 import Form from '../../containers/Form'
 
 @withRouter
 @connect(
-  state => ({ }),
+  state => ({
+    errorLogin: state.account.errorLogin,
+    token: state.account.token
+  }),
   dispatch => ({
-    successAuthorization: bindActionCreators(successAuthorization, dispatch)
+    login: bindActionCreators(login, dispatch)
   })
 )
 export default class Auth extends PureComponent {
@@ -27,12 +30,10 @@ export default class Auth extends PureComponent {
   }
 
   send = () => {
-    if (this.state.email === 'user@example.com' && this.state.password === '123456') {
-      this.props.successAuthorization(true)
-      this.props.history.push('/profile')
-    } else {
-      this.setState({ requestFailed: 'Не верное имя или пароль' })
-    }
+    this.props.login({
+      username: this.state.email,
+      password: this.state.password
+    })
   }
 
   change = (name) => (e) => {
@@ -41,7 +42,9 @@ export default class Auth extends PureComponent {
 
   buttonStatus = () => {
     const errors = []
-    if (!isEmail(this.state.email)) errors.push('email')
+    if (this.state.email !== 'admin') {
+      if (!isEmail(this.state.email)) errors.push('email')
+    }
     if (this.state.password !== null && this.state.password.length === 0) errors.push('password')
 
     const button = () => {
@@ -54,12 +57,14 @@ export default class Auth extends PureComponent {
   }
 
   render () {
+    if (this.props.token) return <Redirect to='/profile' />
     return (
       <Form
         inputs={this.state.inputs}
         send={this.send}
         change={this.change}
         buttonStatus={this.buttonStatus}
+        errorLogin={this.props.errorLogin}
         title='Войти'
         description='Вход для зарегистрированных пользователей'
         agreement={[
