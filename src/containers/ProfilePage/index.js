@@ -50,20 +50,20 @@ export default class ProfilePage extends PureComponent {
       const { account } = props
       return {
         about: [
-          { key: 'Пол', value: account.gender },
+          { key: 'Пол', value: account.sex },
           { key: 'Телефон', value: account.phone },
-          { key: 'Тип занятости', value: account.employment },
-          { key: 'Регион проживания', value: account.regionOfResidence },
+          { key: 'Тип занятости', value: account.employmentType },
+          { key: 'Регион проживания', value: account.regionId },
           { key: 'Электронная почта', value: account.email },
-          { key: 'Желаемый график', value: account.schedule },
-          { key: 'Желаемый регион работы', value: account.desiredRegionOfResidence },
-          { key: 'Разрешение на оружие', value: '№ ' + account.weaponNumber },
-          { key: 'Желаемый уровень зарплаты', value: account.salary },
-          { key: 'Дата рождения', value: account.dateOfBirth },
-          { key: 'Водительские права', value: '№ ' + account.driveryLicenseNumber },
+          { key: 'Желаемый график', value: account.workSchedule },
+          { key: 'Желаемый регион работы', value: account.workRegionId },
+          { key: 'Разрешение на оружие', value: '№ ' + account.gunLicenseNumber },
+          { key: 'Желаемый уровень зарплаты', value: account.desiredSalary },
+          { key: 'Дата рождения', value: account.birthDate },
+          { key: 'Водительские права', value: '№ ' + account.driverLicenseNumber },
           { key: '', value: '' },
           { key: 'Профессиональная область', value: account.professionalArea },
-          { key: 'Опыт работы в сфере (лет)', value: account.experience }
+          { key: 'Опыт работы в сфере (лет)', value: account.experienceYears }
         ]
       }
     }
@@ -88,7 +88,7 @@ export default class ProfilePage extends PureComponent {
       <Container>
         <BreadCrumbs items={this.state.breadcrumbs}/>
         <Notif />
-        <Title>{account.lastName} {account.firstName} {account.patronymic}</Title>
+        <Title>{account.lastName} {account.firstName} {account.middleName}</Title>
         <ReadButton to='/profile/form'>
           <img src='/img/read.svg'/>
           Редактировать данные

@@ -19,10 +19,10 @@ import BackButton from '../../components/BackButton'
 export default class ProfileFormStepThree extends PureComponent {
   state = {
     init: false,
-    employment: '',
-    schedule: '',
-    salary: '',
-    about: '',
+    employmentType: '',
+    workSchedule: '',
+    desiredSalary: '',
+    comment: '',
     errors: []
   }
 
@@ -32,10 +32,10 @@ export default class ProfileFormStepThree extends PureComponent {
 
       return {
         init: true,
-        employment: account.employment,
-        schedule: account.schedule,
-        salary: account.salary,
-        about: account.about
+        employmentType: account.employmentType,
+        workSchedule: account.workSchedule,
+        desiredSalary: account.desiredSalary,
+        comment: account.comment
       }
     }
     return null
@@ -51,17 +51,17 @@ export default class ProfileFormStepThree extends PureComponent {
   send = () => {
     const { state } = this
     const errors = []
-    if (state.employment === '') errors.push('employment')
-    if (state.schedule === '') errors.push('schedule')
-    if (state.salary === '') errors.push('salary')
-    if (state.about === '') errors.push('about')
+    if (state.employmentType === '') errors.push('employmentType')
+    if (state.workSchedule === '') errors.push('workSchedule')
+    if (state.desiredSalary === '') errors.push('desiredSalary')
+    if (state.comment === '') errors.push('comment')
 
     if (!errors.length) {
       const data = {
-        employment: state.employment,
-        schedule: state.schedule,
-        salary: state.salary,
-        about: state.about
+        employmentType: state.employmentType,
+        workSchedule: state.workSchedule,
+        desiredSalary: state.desiredSalary,
+        comment: state.comment
       }
 
       this.props.history.push('/profile/form/step/3')
@@ -84,9 +84,9 @@ export default class ProfileFormStepThree extends PureComponent {
             { key: 'Стажировка', value: 'Стажировка' }
           ]}
           name='Тип занятости'
-          defaultValue={this.state.employment}
-          onChange={this.change('employment')}
-          error={this.state.errors.includes('employment')}
+          defaultValue={this.state.employmentType}
+          onChange={this.change('employmentType')}
+          error={this.state.errors.includes('employmentType')}
         />
         <Select
           items={[
@@ -98,21 +98,21 @@ export default class ProfileFormStepThree extends PureComponent {
             { key: 'Вахтовый метод', value: 'Вахтовый метод' }
           ]}
           name='Желаемый график'
-          defaultValue={this.state.schedule}
-          onChange={this.change('schedule')}
-          error={this.state.errors.includes('schedule')}
+          defaultValue={this.state.workSchedule}
+          onChange={this.change('workSchedule')}
+          error={this.state.errors.includes('workSchedule')}
         />
         <Input
           name='Желаемый уровень зарплаты'
-          defaultValue={this.state.salary}
-          onChange={this.change('salary')}
-          error={this.state.errors.includes('salary')}
+          defaultValue={this.state.desiredSalary}
+          onChange={this.change('desiredSalary')}
+          error={this.state.errors.includes('desiredSalary')}
         />
         <Textarea
           name='Напишите немного о себе'
-          defaultValue={this.state.about}
-          onChange={this.change('about')}
-          error={this.state.errors.includes('about')}
+          defaultValue={this.state.comment}
+          onChange={this.change('comment')}
+          error={this.state.errors.includes('comment')}
         />
         <ButtonWrapper>
           <BackButton to='/profile/form/step/1' />

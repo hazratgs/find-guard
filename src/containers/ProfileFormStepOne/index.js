@@ -11,7 +11,10 @@ import Dots from '../../components/Dots'
 
 @withRouter
 @connect(
-  state => ({ account: state.account.account }),
+  state => ({
+    account: state.account.account,
+    regions: state.regions.data
+  }),
   dispatch => ({ changeAccount: bindActionCreators(changeAccount, dispatch) })
 )
 export default class ProfileFormStepOne extends PureComponent {
@@ -19,11 +22,11 @@ export default class ProfileFormStepOne extends PureComponent {
     init: false,
     lastName: '',
     firstName: '',
-    patronymic: '',
-    gender: '',
-    dateOfBirth: '',
-    regionOfResidence: '',
-    desiredRegionOfResidence: '',
+    middleName: '',
+    sex: '',
+    birthDate: '',
+    regionId: '',
+    workRegionId: '',
     errors: []
   }
 
@@ -35,11 +38,11 @@ export default class ProfileFormStepOne extends PureComponent {
         init: true,
         lastName: account.lastName,
         firstName: account.firstName,
-        patronymic: account.patronymic,
-        gender: account.gender,
-        dateOfBirth: account.dateOfBirth,
-        regionOfResidence: account.regionOfResidence,
-        desiredRegionOfResidence: account.desiredRegionOfResidence
+        middleName: account.middleName,
+        sex: account.sex,
+        birthDate: account.birthDate,
+        regionId: account.regionId,
+        workRegionId: account.workRegionId
       }
     }
     return null
@@ -57,21 +60,21 @@ export default class ProfileFormStepOne extends PureComponent {
     const errors = []
     if (state.lastName === '') errors.push('lastName')
     if (state.firstName === '') errors.push('firstName')
-    if (state.patronymic === '') errors.push('patronymic')
-    if (state.gender === '') errors.push('gender')
-    if (state.dateOfBirth === '') errors.push('dateOfBirth')
-    if (state.regionOfResidence === '') errors.push('regionOfResidence')
-    if (state.desiredRegionOfResidence === '') errors.push('desiredRegionOfResidence')
+    if (state.middleName === '') errors.push('middleName')
+    if (state.sex === '') errors.push('sex')
+    if (state.birthDate === '') errors.push('birthDate')
+    if (state.regionId === '') errors.push('regionId')
+    if (state.workRegionId === '') errors.push('workRegionId')
 
     if (!errors.length) {
       const data = {
         lastName: state.lastName,
         firstName: state.firstName,
-        patronymic: state.patronymic,
-        gender: state.gender,
-        dateOfBirth: state.dateOfBirth,
-        regionOfResidence: state.regionOfResidence,
-        desiredRegionOfResidence: state.desiredRegionOfResidence
+        middleName: state.middleName,
+        sex: state.sex,
+        birthDate: state.birthDate,
+        regionId: state.regionId,
+        workRegionId: state.workRegionId
       }
 
       this.props.history.push('/profile/form/step/1')
@@ -82,6 +85,8 @@ export default class ProfileFormStepOne extends PureComponent {
   }
 
   render () {
+    const regions = this.props.regions.map((item) => ({ key: item.name, value: item.id }))
+
     return (
       <Container>
         <Input
@@ -98,53 +103,49 @@ export default class ProfileFormStepOne extends PureComponent {
         />
         <Input
           name='Отчество'
-          defaultValue={this.state.patronymic}
-          onChange={this.change('patronymic')}
-          error={this.state.errors.includes('patronymic')}
+          defaultValue={this.state.middleName}
+          onChange={this.change('middleName')}
+          error={this.state.errors.includes('middleName')}
         />
         <Wrapper>
           <Select
             items={[
               { key: '', value: '' },
-              { key: 'Мужской', value: 'Male' },
-              { key: 'Женский', value: 'Female' }
+              { key: 'Мужской', value: 'MALE' },
+              { key: 'Женский', value: 'FEMALE' }
             ]}
             name='Укажите ваш пол'
-            defaultValue={this.state.gender}
-            onChange={this.change('gender')}
-            error={this.state.errors.includes('gender')}
+            defaultValue={this.state.sex}
+            onChange={this.change('sex')}
+            error={this.state.errors.includes('sex')}
           />
           <Input
             name='Дата рождения'
             mask="99.99 9999"
-            defaultValue={this.state.dateOfBirth}
-            onChange={this.change('dateOfBirth')}
-            error={this.state.errors.includes('dateOfBirth')}
+            defaultValue={this.state.birthDate}
+            onChange={this.change('birthDate')}
+            error={this.state.errors.includes('birthDate')}
           />
         </Wrapper>
         <Select
           items={[
             { key: '', value: '' },
-            { key: 'Россия', value: 'Russia' },
-            { key: 'Украина', value: 'Ukraine' },
-            { key: 'Казахстан', value: 'Kazakhstan' }
+            ...regions
           ]}
           name='Регион проживания'
-          defaultValue={this.state.regionOfResidence}
-          onChange={this.change('regionOfResidence')}
-          error={this.state.errors.includes('regionOfResidence')}
+          defaultValue={this.state.regionId}
+          onChange={this.change('regionId')}
+          error={this.state.errors.includes('regionId')}
         />
         <Select
           items={[
             { key: '', value: '' },
-            { key: 'Россия', value: 'Russia' },
-            { key: 'Украина', value: 'Ukraine' },
-            { key: 'Казахстан', value: 'Kazakhstan' }
+            ...regions
           ]}
           name='Желаемый регион работы'
-          defaultValue={this.state.desiredRegionOfResidence}
-          onChange={this.change('desiredRegionOfResidence')}
-          error={this.state.errors.includes('desiredRegionOfResidence')}
+          defaultValue={this.state.workRegionId}
+          onChange={this.change('workRegionId')}
+          error={this.state.errors.includes('workRegionId')}
         />
         <Button handle={this.send}>
           <span>Продолжить</span>

@@ -22,12 +22,12 @@ export default class ProfileFormStepTwo extends PureComponent {
     init: false,
     phone: '',
     email: '',
-    driveryLicense: false,
-    driveryLicenseNumber: '',
-    weapon: false,
-    weaponNumber: '',
+    driverLicense: false,
+    driverLicenseNumber: '',
+    gunLicense: false,
+    gunLicenseNumber: '',
     professionalArea: '',
-    experience: '',
+    experienceYears: '',
     errors: []
   }
 
@@ -46,12 +46,12 @@ export default class ProfileFormStepTwo extends PureComponent {
         init: true,
         phone: account.phone,
         email: account.email,
-        driveryLicense: account.driveryLicense,
-        driveryLicenseNumber: account.driveryLicenseNumber,
-        weapon: account.weapon,
-        weaponNumber: account.weaponNumber,
+        driverLicense: account.driverLicense,
+        driverLicenseNumber: account.driverLicenseNumber,
+        gunLicense: account.gunLicense,
+        gunLicenseNumber: account.gunLicenseNumber,
         // professionalArea: account.professionalArea,
-        experience: account.experience
+        experienceYears: account.experienceYears
       }
     }
     return null
@@ -64,20 +64,20 @@ export default class ProfileFormStepTwo extends PureComponent {
     if (state.email === '') errors.push('email')
     if (!isEmail(state.email)) errors.push('email')
     // if (state.professionalArea === '') errors.push('professionalArea')
-    if (state.experience === '') errors.push('experience')
-    if (state.driveryLicense && state.driveryLicenseNumber.replace(/\D+/g, '').length !== 10) errors.push('driveryLicenseNumber')
-    if (state.weapon && state.weaponNumber.replace(/\D+/g, '').length !== 7) errors.push('weaponNumber')
+    if (state.experienceYears === '') errors.push('experienceYears')
+    if (state.driverLicense && state.driverLicenseNumber.replace(/\D+/g, '').length !== 10) errors.push('driverLicenseNumber')
+    if (state.gunLicense && state.gunLicenseNumber.replace(/\D+/g, '').length !== 7) errors.push('gunLicenseNumber')
 
     if (!errors.length) {
       const data = {
         phone: state.phone,
         email: state.email,
-        driveryLicense: state.driveryLicense,
-        driveryLicenseNumber: state.driveryLicenseNumber,
-        weapon: state.weapon,
-        weaponNumber: state.weaponNumber,
+        driverLicense: state.driverLicense,
+        driverLicenseNumber: state.driverLicenseNumber,
+        gunLicense: state.gunLicense,
+        gunLicenseNumber: state.gunLicenseNumber,
         // professionalArea: state.professionalArea,
-        experience: state.experience
+        experienceYears: state.experienceYears
       }
 
       this.props.history.push('/profile/form/step/2')
@@ -105,23 +105,23 @@ export default class ProfileFormStepTwo extends PureComponent {
         />
         <Checkbox
           text='У вас есть водительские права?'
-          defaultValue={this.state.driveryLicense}
-          defaultValueInput={this.state.driveryLicenseNumber}
+          defaultValue={this.state.driverLicense}
+          defaultValueInput={this.state.driverLicenseNumber}
           mask='99 99 999999'
           placeholder='№ водительского удостоверения'
-          onChange={this.change('driveryLicense')}
-          changeInput={this.change('driveryLicenseNumber')}
-          error={this.state.errors.includes('driveryLicenseNumber')}
+          onChange={this.change('driverLicense')}
+          changeInput={this.change('driverLicenseNumber')}
+          error={this.state.errors.includes('driverLicenseNumber')}
         />
         <Checkbox
           text='У вас есть разрешение на оружие?'
-          defaultValue={this.state.weapon}
-          defaultValueInput={this.state.weaponNumber}
-          onChange={this.change('weapon')}
+          defaultValue={this.state.gunLicense}
+          defaultValueInput={this.state.gunLicenseNumber}
+          onChange={this.change('gunLicense')}
           mask='9999999'
           placeholder='№ разрешения на оружия'
-          changeInput={this.change('weaponNumber')}
-          error={this.state.errors.includes('weaponNumber')}
+          changeInput={this.change('gunLicenseNumber')}
+          error={this.state.errors.includes('gunLicenseNumber')}
         />
         {/* <Input
           name='Профессиональная область'
@@ -139,9 +139,9 @@ export default class ProfileFormStepTwo extends PureComponent {
           ]}
           name='Опыт работы в сфере (лет)'
           small={true}
-          defaultValue={this.state.experience}
-          onChange={this.change('experience')}
-          error={this.state.errors.includes('experience')}
+          defaultValue={this.state.experienceYears}
+          onChange={this.change('experienceYears')}
+          error={this.state.errors.includes('experienceYears')}
         />
         <ButtonWrapper>
           <BackButton to='/profile/form' />
