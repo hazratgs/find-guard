@@ -3,7 +3,7 @@ import isEmail from 'validator/lib/isEmail'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
-import { changeProfile } from '../../actions/profile'
+import { changeAccount } from '../../actions/account'
 import { Container, ButtonWrapper } from './styles'
 import Input from '../../components/Input'
 import Select from '../../components/Select'
@@ -14,8 +14,8 @@ import BackButton from '../../components/BackButton'
 
 @withRouter
 @connect(
-  state => ({ profile: state.profile.profile }),
-  dispatch => ({ changeProfile: bindActionCreators(changeProfile, dispatch) })
+  state => ({ account: state.account.account }),
+  dispatch => ({ changeAccount: bindActionCreators(changeAccount, dispatch) })
 )
 export default class ProfileFormStepTwo extends PureComponent {
   state = {
@@ -39,19 +39,19 @@ export default class ProfileFormStepTwo extends PureComponent {
   }
 
   static getDerivedStateFromProps (props, state) {
-    if (props.profile && !state.init) {
-      const { profile } = props
+    if (props.account && !state.init) {
+      const { account } = props
 
       return {
         init: true,
-        phone: profile.phone,
-        email: profile.email,
-        driveryLicense: profile.driveryLicense,
-        driveryLicenseNumber: profile.driveryLicenseNumber,
-        weapon: profile.weapon,
-        weaponNumber: profile.weaponNumber,
-        // professionalArea: profile.professionalArea,
-        experience: profile.experience
+        phone: account.phone,
+        email: account.email,
+        driveryLicense: account.driveryLicense,
+        driveryLicenseNumber: account.driveryLicenseNumber,
+        weapon: account.weapon,
+        weaponNumber: account.weaponNumber,
+        // professionalArea: account.professionalArea,
+        experience: account.experience
       }
     }
     return null
@@ -81,7 +81,7 @@ export default class ProfileFormStepTwo extends PureComponent {
       }
 
       this.props.history.push('/profile/form/step/2')
-      this.props.changeProfile(data)
+      this.props.changeAccount(data)
     } else {
       this.setState({ errors })
     }

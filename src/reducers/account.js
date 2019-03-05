@@ -5,7 +5,28 @@ const initialState = {
   login: false,
   token: null,
   errorLogin: false,
-  account: {},
+  account: {
+    lastName: '',
+    firstName: '',
+    patronymic: '',
+    gender: '',
+    dateOfBirth: '',
+    regionOfResidence: '',
+    desiredRegionOfResidence: '',
+    phone: '',
+    email: '',
+    driveryLicense: false,
+    driveryLicenseNumber: '',
+    weapon: false,
+    weaponNumber: '',
+    professionalArea: '',
+    experience: '',
+    employment: '',
+    schedule: '',
+    salary: '',
+    about: '',
+    files: []
+  },
   errorAccount: false
 }
 
@@ -32,11 +53,20 @@ const handleErrorGetAccount = (state) => ({
   errorAccount: true
 })
 
+const handleChangeAccount = (state, payload) => ({
+  ...state,
+  account: {
+    ...state.account,
+    ...payload
+  }
+})
+
 const reducer = createReducer({
   [actions.successLogin]: handleSuccessLogin,
   [actions.errorLogin]: handleErrorLogin,
   [actions.getSuccessAccount]: handleGetSuccessAccount,
-  [actions.errorGetAccount]: handleErrorGetAccount
+  [actions.errorGetAccount]: handleErrorGetAccount,
+  [actions.changeAccount]: handleChangeAccount
 }, initialState)
 
 export default reducer

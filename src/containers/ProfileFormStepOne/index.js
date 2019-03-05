@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
-import { changeProfile } from '../../actions/profile'
+import { changeAccount } from '../../actions/account'
 import { Container } from './styles'
 import Input, { Wrapper } from '../../components/Input'
 import Select from '../../components/Select'
@@ -11,8 +11,8 @@ import Dots from '../../components/Dots'
 
 @withRouter
 @connect(
-  state => ({ profile: state.profile.profile }),
-  dispatch => ({ changeProfile: bindActionCreators(changeProfile, dispatch) })
+  state => ({ account: state.account.account }),
+  dispatch => ({ changeAccount: bindActionCreators(changeAccount, dispatch) })
 )
 export default class ProfileFormStepOne extends PureComponent {
   state = {
@@ -28,18 +28,18 @@ export default class ProfileFormStepOne extends PureComponent {
   }
 
   static getDerivedStateFromProps (props, state) {
-    if (props.profile && !state.init) {
-      const { profile } = props
+    if (props.account && !state.init) {
+      const { account } = props
 
       return {
         init: true,
-        lastName: profile.lastName,
-        firstName: profile.firstName,
-        patronymic: profile.patronymic,
-        gender: profile.gender,
-        dateOfBirth: profile.dateOfBirth,
-        regionOfResidence: profile.regionOfResidence,
-        desiredRegionOfResidence: profile.desiredRegionOfResidence
+        lastName: account.lastName,
+        firstName: account.firstName,
+        patronymic: account.patronymic,
+        gender: account.gender,
+        dateOfBirth: account.dateOfBirth,
+        regionOfResidence: account.regionOfResidence,
+        desiredRegionOfResidence: account.desiredRegionOfResidence
       }
     }
     return null
@@ -75,7 +75,7 @@ export default class ProfileFormStepOne extends PureComponent {
       }
 
       this.props.history.push('/profile/form/step/1')
-      this.props.changeProfile(data)
+      this.props.changeAccount(data)
     } else {
       this.setState({ errors })
     }

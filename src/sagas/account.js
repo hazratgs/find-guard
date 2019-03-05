@@ -31,7 +31,25 @@ function* getAccount () {
   }
 }
 
+function* isAuthenticate () {
+  try {
+    const token = cookies.get('token')
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+      const request = yield GET('/authenticate')
+
+      if (request.data !== '') {
+        yield put(actions.successLogin(token))
+        yield put(actions.getAccount())
+      }
+    }
+  } catch (e) {
+    yield put(actions.errorLogin())
+  }
+}
+
 export default function* watcher () {
   yield takeLatest(actions.login, login)
   yield takeLatest(actions.getAccount, getAccount)
+  yield takeLatest(actions.isAuthenticate, isAuthenticate)
 }

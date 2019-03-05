@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
-import { changeProfile } from '../../actions/profile'
+import { changeAccount } from '../../actions/account'
 import { Container, ButtonWrapper, AppTerms } from './styles'
 import DropZone from '../../components/DropZone'
 import Button from '../../components/StepButton'
@@ -11,8 +11,8 @@ import BackButton from '../../components/BackButton'
 
 @withRouter
 @connect(
-  state => ({ profile: state.profile.profile }),
-  dispatch => ({ changeProfile: bindActionCreators(changeProfile, dispatch) })
+  state => ({ account: state.account.account }),
+  dispatch => ({ changeAccount: bindActionCreators(changeAccount, dispatch) })
 )
 export default class ProfileFormStepFor extends PureComponent {
   state = {
@@ -22,12 +22,12 @@ export default class ProfileFormStepFor extends PureComponent {
   }
 
   static getDerivedStateFromProps (props, state) {
-    if (props.profile && !state.init) {
-      const { profile } = props
+    if (props.account && !state.init) {
+      const { account } = props
 
       return {
         init: true,
-        files: profile.files
+        files: account.files
       }
     }
     return null
@@ -51,7 +51,7 @@ export default class ProfileFormStepFor extends PureComponent {
       }
 
       this.props.history.push('/profile')
-      this.props.changeProfile(data)
+      this.props.changeAccount(data)
     } else {
       this.setState({ errors })
     }

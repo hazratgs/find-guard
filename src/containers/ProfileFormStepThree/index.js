@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
-import { changeProfile } from '../../actions/profile'
+import { changeAccount } from '../../actions/account'
 import { Container, ButtonWrapper } from './styles'
 import Input from '../../components/Input'
 import Select from '../../components/Select'
@@ -13,8 +13,8 @@ import BackButton from '../../components/BackButton'
 
 @withRouter
 @connect(
-  state => ({ profile: state.profile.profile }),
-  dispatch => ({ changeProfile: bindActionCreators(changeProfile, dispatch) })
+  state => ({ account: state.account.account }),
+  dispatch => ({ changeAccount: bindActionCreators(changeAccount, dispatch) })
 )
 export default class ProfileFormStepThree extends PureComponent {
   state = {
@@ -27,15 +27,15 @@ export default class ProfileFormStepThree extends PureComponent {
   }
 
   static getDerivedStateFromProps (props, state) {
-    if (props.profile && !state.init) {
-      const { profile } = props
+    if (props.account && !state.init) {
+      const { account } = props
 
       return {
         init: true,
-        employment: profile.employment,
-        schedule: profile.schedule,
-        salary: profile.salary,
-        about: profile.about
+        employment: account.employment,
+        schedule: account.schedule,
+        salary: account.salary,
+        about: account.about
       }
     }
     return null
@@ -65,7 +65,7 @@ export default class ProfileFormStepThree extends PureComponent {
       }
 
       this.props.history.push('/profile/form/step/3')
-      this.props.changeProfile(data)
+      this.props.changeAccount(data)
     } else {
       this.setState({ errors })
     }

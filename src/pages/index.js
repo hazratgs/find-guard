@@ -1,7 +1,9 @@
 import React, { PureComponent, Fragment } from 'react'
 import { hot } from 'react-hot-loader'
-import { withRouter, Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { isAuthenticate } from '../actions/account'
+import { withRouter, Switch, Route } from 'react-router-dom'
 
 import Main from './main'
 import Profile from './profile'
@@ -9,10 +11,20 @@ import NotFound from '../containers/NotFound'
 
 @hot(module)
 @withRouter
-@connect()
+@connect(
+  state => ({ }),
+  dispatch => ({
+    isAuthenticate: bindActionCreators(isAuthenticate, dispatch)
+  })
+)
 export default class Pages extends PureComponent {
   state = {
     reloadServerRender: false
+  }
+
+  componentDidMount () {
+    // авторизация пользователя по cookies.token
+    this.props.isAuthenticate()
   }
 
   render () {

@@ -2,16 +2,14 @@ import React, { PureComponent } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { successAuthorization } from '../../actions/profile'
+import { changeAccount } from '../../actions/account'
 import isEmail from 'validator/lib/isEmail'
 import Form from '../../containers/Form'
 
 @withRouter
 @connect(
   state => ({ }),
-  dispatch => ({
-    successAuthorization: bindActionCreators(successAuthorization, dispatch)
-  })
+  dispatch => ({ changeAccount: bindActionCreators(changeAccount, dispatch) })
 )
 export default class Register extends PureComponent {
   state = {
@@ -29,7 +27,11 @@ export default class Register extends PureComponent {
   }
 
   send = () => {
-    this.props.successAuthorization(true)
+    this.props.changeAccount({
+      login: this.state.login,
+      email: this.state.email,
+      password: this.state.password
+    })
     this.props.history.push('/profile/form')
   }
 
