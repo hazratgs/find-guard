@@ -86,10 +86,28 @@ function* accountRegister () {
   }
 }
 
+function* forgotPassword (action) {
+  try {
+    const method = () => axios({
+      method: 'POST',
+      url: `${api}/account/reset-password/init`,
+      data: action.payload,
+      headers: {
+        'Content-Type': 'text/plain'
+      }
+    })
+    yield call(method, '/account/reset-password/init', action.payload)
+    yield put(actions.successForgotPassword())
+  } catch (e) {
+    yield put(actions.errorForgotPassword())
+  }
+}
+
 export default function* watcher () {
   yield takeLatest(actions.login, login)
   yield takeLatest(actions.getAccount, getAccount)
   yield takeLatest(actions.isAuthenticate, isAuthenticate)
   yield takeLatest(actions.fileUpload, fileUpload)
   yield takeLatest(actions.accountRegister, accountRegister)
+  yield takeLatest(actions.forgotPassword, forgotPassword)
 }

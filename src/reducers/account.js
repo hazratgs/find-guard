@@ -6,6 +6,8 @@ const initialState = {
   token: null,
   errorLogin: false,
   register: false,
+  successForgotPassword: false,
+  errorForgotPassword: false,
   account: {
     lastName: '',
     firstName: '',
@@ -76,6 +78,18 @@ const handleCloseNotifRegister = (state) => ({
   register: false
 })
 
+const handleSuccessForgotPassword = (state) => ({
+  ...state,
+  successForgotPassword: true,
+  errorForgotPassword: false
+})
+
+const handleErrorForgotPassword = (state) => ({
+  ...state,
+  errorForgotPassword: true,
+  successForgotPassword: false
+})
+
 const reducer = createReducer({
   [actions.successLogin]: handleSuccessLogin,
   [actions.errorLogin]: handleErrorLogin,
@@ -83,7 +97,9 @@ const reducer = createReducer({
   [actions.errorGetAccount]: handleErrorGetAccount,
   [actions.changeAccount]: handleChangeAccount,
   [actions.accountRegister]: handleAccountRegister,
-  [actions.closeNotifRegister]: handleCloseNotifRegister
+  [actions.closeNotifRegister]: handleCloseNotifRegister,
+  [actions.successForgotPassword]: handleSuccessForgotPassword,
+  [actions.errorForgotPassword]: handleErrorForgotPassword
 }, initialState)
 
 export default reducer

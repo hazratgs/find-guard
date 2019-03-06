@@ -28,7 +28,10 @@ export default class FormWrapper extends PureComponent {
     button: propTypes.string,
     link: propTypes.string,
     linkPath: propTypes.string,
-    errorLogin: propTypes.bool
+    errorForm: propTypes.bool,
+    successForm: propTypes.bool,
+    errorMessage: propTypes.string,
+    successMessage: propTypes.string
   }
 
   render () {
@@ -45,11 +48,11 @@ export default class FormWrapper extends PureComponent {
 
     return (
       <Container>
-        {this.props.errorLogin && (
-          <ErrorMessage>Не верное имя или пароль</ErrorMessage>
+        {this.props.errorForm && (
+          <ErrorMessage>{this.props.errorMessage}</ErrorMessage>
         )}
-        {this.props.state.successMessage && (
-          <SuccessMessage>{this.props.state.successMessage}</SuccessMessage>
+        {this.props.successForm && (
+          <SuccessMessage>{this.props.successMessage}</SuccessMessage>
         )}
         <Popup>
           <Close to='/' />

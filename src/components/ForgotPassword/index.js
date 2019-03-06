@@ -1,8 +1,18 @@
 import React, { PureComponent } from 'react'
-import isEmail from 'validator/lib/isEmail'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { forgotPassword } from '../../actions/account'
+// import isEmail from 'validator/lib/isEmail'
 import Form from '../../containers/Form'
 
-export default class Auth extends PureComponent {
+@connect(
+  state => ({
+    success: state.account.successForgotPassword,
+    error: state.account.errorForgotPassword
+  }),
+  dispatch => ({ forgotPassword: bindActionCreators(forgotPassword, dispatch) })
+)
+export default class ForgotPassword extends PureComponent {
   state = {
     inputs: [
       { type: 'email', name: 'email', placeholder: 'Электронная почта' }
@@ -14,7 +24,8 @@ export default class Auth extends PureComponent {
   }
 
   send = () => {
-    this.setState({ successMessage: 'Информация по восстановлению пароля отправлена на email' })
+    this.props.forgotPassword(this.state.email)
+    // this.setState({ successMessage: 'Информация по восстановлению пароля отправлена на email' })
   }
 
   change = (name) => (e) => {
@@ -23,7 +34,7 @@ export default class Auth extends PureComponent {
 
   buttonStatus = () => {
     const errors = []
-    if (!isEmail(this.state.email)) errors.push('email')
+    // if (!isEmail(this.state.email)) errors.push('email')
 
     const button = () => {
       const nullStatus = this.state.email === null
@@ -45,6 +56,10 @@ export default class Auth extends PureComponent {
         description='Укажите почту, которую вы использовали при регистрации.'
         button='Восстановить пароль'
         state={this.state}
+        errorForm={this.props.error}
+        errorMessage='Email адрес не зарегистрирован! Пожалуйста проверьте и попробуйте снова'
+        successForm={this.props.success}
+        successMessage='Проверьте ваш email для подробной информации о том, как сбросить пароль.'
       />
     )
   }
