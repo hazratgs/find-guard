@@ -5,6 +5,7 @@ const initialState = {
   login: false,
   token: null,
   errorLogin: false,
+  register: false,
   account: {
     lastName: '',
     firstName: '',
@@ -25,8 +26,8 @@ const initialState = {
     employmentType: '',
     workSchedule: '',
     desiredSalary: '',
-    comment: ''
-    // files: []
+    comment: '',
+    files: []
   },
   errorAccount: false
 }
@@ -65,12 +66,24 @@ const handleChangeAccount = (state, payload) => ({
   }
 })
 
+const handleAccountRegister = (state) => ({
+  ...state,
+  register: true
+})
+
+const handleCloseNotifRegister = (state) => ({
+  ...state,
+  register: false
+})
+
 const reducer = createReducer({
   [actions.successLogin]: handleSuccessLogin,
   [actions.errorLogin]: handleErrorLogin,
   [actions.getSuccessAccount]: handleGetSuccessAccount,
   [actions.errorGetAccount]: handleErrorGetAccount,
-  [actions.changeAccount]: handleChangeAccount
+  [actions.changeAccount]: handleChangeAccount,
+  [actions.accountRegister]: handleAccountRegister,
+  [actions.closeNotifRegister]: handleCloseNotifRegister
 }, initialState)
 
 export default reducer

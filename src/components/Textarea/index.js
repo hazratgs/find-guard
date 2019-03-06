@@ -21,9 +21,9 @@ export default class Textarea extends PureComponent {
   }
 
   render () {
-    const { name, defaultValue } = this.props
+    const { name, defaultValue, error } = this.props
     return (
-      <Container>
+      <Container error={error}>
         <Text onChange={this.change} defaultValue={defaultValue} />
         <Name isset={!!this.state.value}>{name}</Name>
       </Container>

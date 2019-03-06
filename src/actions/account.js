@@ -10,7 +10,8 @@ import {
   CHANGE_ACСOUNT,
   FILE_UPLOAD,
   ERROR_FILE_UPLOAD,
-  ACCOUNT_REGISTER
+  ACCOUNT_REGISTER,
+  CLOSE_NOTIF_REGISTEER
 } from '../constants/account'
 
 export const login = createAction(LOGIN)
@@ -29,3 +30,4 @@ export const fileUpload = createAction(FILE_UPLOAD)
 export const errorFileUpload = createAction(ERROR_FILE_UPLOAD)
 
 export const accountRegister = createAction(ACCOUNT_REGISTER)
+export const closeNotifRegister = createAction(CLOSE_NOTIF_REGISTEER)

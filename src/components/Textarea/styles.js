@@ -6,6 +6,10 @@ export const Container = styled.div`
   margin-bottom: 10px;
   background-color: #fff;
   border-radius: 4px;
+
+  ${props => props.error && `
+    box-shadow: 0 0 0 2px red;
+  `}
 `
 
 export const Name = styled.span`

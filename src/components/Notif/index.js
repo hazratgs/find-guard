@@ -1,16 +1,18 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { closeNotifRegister } from '../../actions/account'
 import { Container, Icon, Title, Description, Close } from './styles'
 
+@connect(
+  state => ({ register: state.account.register }),
+  dispatch => ({ close: bindActionCreators(closeNotifRegister, dispatch) })
+)
 export default class Notif extends PureComponent {
-  state = {
-    visible: true
-  }
-
-  close = () => this.setState({ visible: false })
+  close = () => this.props.close()
 
   render () {
-    if (!this.state.visible) return false
-
+    if (!this.props.register) return null
     return (
       <Container>
         <Icon src='/img/check-box.svg'/>

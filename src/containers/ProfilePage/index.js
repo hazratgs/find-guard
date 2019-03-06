@@ -14,7 +14,9 @@ import {
 import BreadCrumbs from '../../components/BreadCrumbs'
 import Notif from '../../components/Notif'
 
-@connect(state => ({ account: state.account.account }))
+@connect(state => ({
+  account: state.account.account
+}))
 export default class ProfilePage extends PureComponent {
   state = {
     breadcrumbs: [
