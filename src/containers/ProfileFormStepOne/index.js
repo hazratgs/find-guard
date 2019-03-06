@@ -33,14 +33,14 @@ export default class ProfileFormStepOne extends PureComponent {
   static getDerivedStateFromProps (props, state) {
     if (props.account && !state.init) {
       const { account } = props
-
+      const [ year, month, day ] = account.birthDate.split('-')
       return {
         init: true,
         lastName: account.lastName,
         firstName: account.firstName,
         middleName: account.middleName,
         sex: account.sex,
-        birthDate: account.birthDate,
+        birthDate: account.birthDate !== '' ? `${day}.${month} ${year}` : account.birthDate,
         regionId: account.regionId,
         workRegionId: account.workRegionId
       }
@@ -66,13 +66,14 @@ export default class ProfileFormStepOne extends PureComponent {
     if (state.regionId === '') errors.push('regionId')
     if (state.workRegionId === '') errors.push('workRegionId')
 
+    const [ day, month, year ] = state.birthDate.replace(' ', '.').split('.')
     if (!errors.length) {
       const data = {
         lastName: state.lastName,
         firstName: state.firstName,
         middleName: state.middleName,
         sex: state.sex,
-        birthDate: state.birthDate,
+        birthDate: state.birthDate !== '' ? `${year}-${month}-${day}` : state.birthDate,
         regionId: state.regionId,
         workRegionId: state.workRegionId
       }

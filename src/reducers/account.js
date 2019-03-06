@@ -14,6 +14,7 @@ const initialState = {
     regionId: '',
     workRegionId: '',
     phone: '',
+    login: '',
     email: '',
     driverLicense: false,
     driverLicenseNumber: '',
@@ -24,8 +25,8 @@ const initialState = {
     employmentType: '',
     workSchedule: '',
     desiredSalary: '',
-    comment: '',
-    files: []
+    comment: ''
+    // files: []
   },
   errorAccount: false
 }

@@ -19,7 +19,7 @@ import BackButton from '../../components/BackButton'
 export default class ProfileFormStepThree extends PureComponent {
   state = {
     init: false,
-    employmentType: '',
+    employmentType: 'FULL',
     workSchedule: '',
     desiredSalary: '',
     comment: '',
@@ -77,8 +77,8 @@ export default class ProfileFormStepThree extends PureComponent {
         <Select
           items={[
             { key: '', value: '' },
-            { key: 'Полная занятость', value: 'Полная занятость' },
-            { key: 'Частичная занятость', value: 'Частичная занятость' },
+            { key: 'Полная занятость', value: 'FULL' },
+            { key: 'Частичная занятость', value: 'PARTIAL' },
             { key: 'Проектная/Временная работа', value: 'Проектная/Временная работа' },
             { key: 'Волонтерство', value: 'Волонтерство' },
             { key: 'Стажировка', value: 'Стажировка' }
@@ -91,7 +91,7 @@ export default class ProfileFormStepThree extends PureComponent {
         <Select
           items={[
             { key: '', value: '' },
-            { key: 'Полный день', value: 'Полный день' },
+            { key: 'Полный день', value: 'NINE_TO_SIX' },
             { key: 'Сменный график', value: 'Сменный график' },
             { key: 'Гибкий график', value: 'Гибкий график' },
             { key: 'Удаленная работа', value: 'Удаленная работа' },

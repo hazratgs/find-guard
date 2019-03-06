@@ -3,6 +3,7 @@ import { hot } from 'react-hot-loader'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { isAuthenticate } from '../actions/account'
+import { getRegions } from '../actions/regions'
 import { withRouter, Switch, Route } from 'react-router-dom'
 
 import Main from './main'
@@ -14,7 +15,8 @@ import NotFound from '../containers/NotFound'
 @connect(
   state => ({ }),
   dispatch => ({
-    isAuthenticate: bindActionCreators(isAuthenticate, dispatch)
+    isAuthenticate: bindActionCreators(isAuthenticate, dispatch),
+    getRegions: bindActionCreators(getRegions, dispatch)
   })
 )
 export default class Pages extends PureComponent {
@@ -25,6 +27,7 @@ export default class Pages extends PureComponent {
   componentDidMount () {
     // авторизация пользователя по cookies.token
     this.props.isAuthenticate()
+    this.props.getRegions()
   }
 
   render () {

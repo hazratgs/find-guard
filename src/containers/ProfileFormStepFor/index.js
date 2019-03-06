@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
-import { changeAccount } from '../../actions/account'
+import { changeAccount, fileUpload, accountRegister } from '../../actions/account'
 import { Container, ButtonWrapper, AppTerms } from './styles'
 import DropZone from '../../components/DropZone'
 import Button from '../../components/StepButton'
@@ -12,7 +12,11 @@ import BackButton from '../../components/BackButton'
 @withRouter
 @connect(
   state => ({ account: state.account.account }),
-  dispatch => ({ changeAccount: bindActionCreators(changeAccount, dispatch) })
+  dispatch => ({
+    changeAccount: bindActionCreators(changeAccount, dispatch),
+    fileUpload: bindActionCreators(fileUpload, dispatch),
+    accountRegister: bindActionCreators(accountRegister, dispatch)
+  })
 )
 export default class ProfileFormStepFor extends PureComponent {
   state = {
@@ -50,8 +54,10 @@ export default class ProfileFormStepFor extends PureComponent {
         files: state.files
       }
 
-      this.props.history.push('/profile')
+      // this.props.history.push('/profile')
       this.props.changeAccount(data)
+      this.props.accountRegister()
+      // this.props.fileUpload(this.state.files)
     } else {
       this.setState({ errors })
     }

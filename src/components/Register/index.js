@@ -28,7 +28,7 @@ export default class Register extends PureComponent {
 
   send = () => {
     this.props.changeAccount({
-      login: this.state.login,
+      login: this.state.email,
       email: this.state.email,
       password: this.state.password
     })

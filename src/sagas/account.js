@@ -1,6 +1,5 @@
-import { takeLatest, call, put } from 'redux-saga/effects'
+import { takeLatest, call, put, select } from 'redux-saga/effects'
 import * as actions from '../actions/account'
-import * as regionsActions from '../actions/regions'
 import axios from 'axios'
 import cookies from 'js-cookie'
 const api = API_SERVER // eslint-disable-line
@@ -17,7 +16,6 @@ function* login (action) {
     cookies.set('token', token, { expires: 7, path: '/' })
     yield put(actions.successLogin(token))
     yield put(actions.getAccount())
-    yield put(regionsActions.getRegions())
   } catch (e) {
     yield put(actions.errorLogin())
   }
@@ -38,12 +36,11 @@ function* isAuthenticate () {
     const token = cookies.get('token')
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-      const request = yield GET('/authenticate')
+      const request = yield call(GET, '/authenticate')
 
       if (request.data !== '') {
         yield put(actions.successLogin(token))
         yield put(actions.getAccount())
-        yield put(regionsActions.getRegions())
       }
     }
   } catch (e) {
@@ -51,8 +48,48 @@ function* isAuthenticate () {
   }
 }
 
+function* fileUpload (action) {
+  try {
+    const formData = new window.FormData()
+    for (let item of action.payload) {
+      formData.append('file', item)
+    }
+    const method = () => axios({
+      method: 'POST',
+      url: `${api}/file-upload`,
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    yield call(method)
+  } catch (e) {
+    yield put(actions.errorFileUpload())
+  }
+}
+
+function* accountRegister () {
+  try {
+    const account = yield select(state => state.account.account)
+    const method = () => axios({
+      method: 'POST',
+      url: `${api}/register`,
+      data: JSON.stringify(account),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const request = yield call(method)
+    console.log(request)
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export default function* watcher () {
   yield takeLatest(actions.login, login)
   yield takeLatest(actions.getAccount, getAccount)
   yield takeLatest(actions.isAuthenticate, isAuthenticate)
+  yield takeLatest(actions.fileUpload, fileUpload)
+  yield takeLatest(actions.accountRegister, accountRegister)
 }

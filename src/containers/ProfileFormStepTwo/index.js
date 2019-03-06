@@ -132,10 +132,10 @@ export default class ProfileFormStepTwo extends PureComponent {
         <Select
           items={[
             { key: '', value: '' },
-            { key: 'Нет опыта', value: 'Нет опыта' },
-            { key: 'От 1 года до 3 лет', value: 'От 1 года до 3 лет' },
-            { key: 'От 3 до 6 лет', value: 'От 3 до 6 лет' },
-            { key: 'Более 6 лет', value: 'Более 6 лет' }
+            { key: 'Нет опыта', value: '0' },
+            { key: 'От 1 года до 3 лет', value: '1' },
+            { key: 'От 3 до 6 лет', value: '3' },
+            { key: 'Более 6 лет', value: '6' }
           ]}
           name='Опыт работы в сфере (лет)'
           small={true}

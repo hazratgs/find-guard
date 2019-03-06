@@ -7,7 +7,10 @@ import {
   GET_SUCCESS_ACCOUNT,
   ERROR_GET_ACCOUNT,
   IS_AUTHENTICATE,
-  CHANGE_ACСOUNT
+  CHANGE_ACСOUNT,
+  FILE_UPLOAD,
+  ERROR_FILE_UPLOAD,
+  ACCOUNT_REGISTER
 } from '../constants/account'
 
 export const login = createAction(LOGIN)
@@ -21,3 +24,8 @@ export const errorGetAccount = createAction(ERROR_GET_ACCOUNT)
 export const isAuthenticate = createAction(IS_AUTHENTICATE)
 
 export const changeAccount = createAction(CHANGE_ACСOUNT)
+
+export const fileUpload = createAction(FILE_UPLOAD)
+export const errorFileUpload = createAction(ERROR_FILE_UPLOAD)
+
+export const accountRegister = createAction(ACCOUNT_REGISTER)

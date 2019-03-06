@@ -1,7 +1,16 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { fileUpload } from '../../actions/account'
 import Dropzone from 'react-dropzone'
 import { Container, Description, Zone, List, ListItem } from './styles'
 
+@connect(
+  null,
+  dispatch => ({
+    fileUpload: bindActionCreators(fileUpload, dispatch)
+  })
+)
 export default class DropZone extends PureComponent {
   state = {
     files: []
@@ -11,6 +20,9 @@ export default class DropZone extends PureComponent {
     const files = [...this.state.files, ...data]
     this.setState({ files })
     this.props.onChange([...this.state.files, ...files])
+
+    // upload files
+    this.props.fileUpload(data)
   }
 
   remove = (key) => () => {
