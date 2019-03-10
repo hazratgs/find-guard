@@ -14,10 +14,17 @@ export const Container = styled.div`
   left: 0;
   right: 0;
   width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    justify-content: space-between;
+  }
 `
 
 export const Logo = styled.img`
-
+  @media (max-width: 768px) {
+    width: 140px;
+  }
 `
 
 export const Button = styled(Link)`
@@ -41,5 +48,9 @@ export const Button = styled(Link)`
 
   &:hover {
     opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    position: relative;
   }
 `

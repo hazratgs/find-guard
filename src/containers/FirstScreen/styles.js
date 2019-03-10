@@ -10,11 +10,15 @@ export const Container = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media (max-width: 768px) {
+    min-height: auto;
+  }
 `
 
 export const Content = styled.div`
   height: 100%;
-  width: 1140px;
+  max-width: 1140px;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -23,6 +27,11 @@ export const Content = styled.div`
   text-align: center;
   padding-top: 40px;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0;
+  }
 `
 
 export const Title = styled.h1`
@@ -33,6 +42,11 @@ export const Title = styled.h1`
   text-transform: uppercase;
   margin: 0;
   padding: 0;
+
+  @media (max-width: 768px) {
+    font-size: 23px;
+    line-height: 28px;
+  }
 `
 
 export const Description = styled.p`
@@ -42,6 +56,11 @@ export const Description = styled.p`
   font-weight: normal;
   margin: 14px 0;
   padding: 0;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
 `
 
 export const Button = styled(Link)`

@@ -20,6 +20,7 @@ export const Button = styled.button`
   margin-top: 40px;
   text-decoration: none;
   align-items: center;
+  min-width: 160px;
 
   &:hover {
     opacity: 0.9;

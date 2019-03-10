@@ -25,6 +25,10 @@ export const Container = styled.div`
     opacity: 0.7;
     z-index: 5;
   }
+
+  @media (max-width: 768px) {
+    background: #EFEFEF;
+  }
 `
 
 export const Popup = styled.div`
@@ -36,6 +40,12 @@ export const Popup = styled.div`
   position: relative;
   z-index: 10;
   text-align: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
 `
 
 export const Close = styled(Link)`
