@@ -4,6 +4,7 @@ import * as actions from '../actions/account'
 const initialState = {
   login: false,
   token: null,
+  admin: true,
   errorLogin: false,
   register: false,
   successForgotPassword: false,
@@ -48,6 +49,7 @@ const handleErrorLogin = (state) => ({
 
 const handleGetSuccessAccount = (state, payload) => ({
   ...state,
+  admin: payload.authorities.includes('ADMIN'),
   account: {
     ...state.account,
     ...payload

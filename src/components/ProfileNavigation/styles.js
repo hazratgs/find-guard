@@ -25,6 +25,9 @@ export const Logo = styled.div`
 `
 export const NavWrapper = styled.div`
 
+  @media (max-width: 768px) {
+    display: flex;
+  }
 `
 
 export const NavItem = styled(NavLink)`
@@ -34,6 +37,11 @@ export const NavItem = styled(NavLink)`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
 
   &.active {
     background-color: rgba(43, 147, 254, 0.5);

@@ -55,6 +55,16 @@ export const AboutItem = styled.div`
     display: block;
     margin-top: 5px;
   }
+
+  @media (max-width: 758px) {
+    flex: 50%;
+    max-width: auto;
+  }
+
+  @media (max-width: 540px) {
+    flex: 100%;
+    max-width: auto;
+  }
 `
 
 export const Text = styled.div`

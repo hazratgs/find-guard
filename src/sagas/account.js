@@ -1,5 +1,6 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects'
 import * as actions from '../actions/account'
+import { getUsers } from '../actions/users'
 import axios from 'axios'
 import cookies from 'js-cookie'
 const api = API_SERVER // eslint-disable-line
@@ -26,6 +27,9 @@ function* getAccount () {
     const request = yield call(GET, '/account')
     const account = request.data
     yield put(actions.getSuccessAccount(account))
+    if (account.authorities.includes('ADMIN')) {
+      yield put(getUsers())
+    }
   } catch (e) {
     yield put(actions.errorGetAccount())
   }

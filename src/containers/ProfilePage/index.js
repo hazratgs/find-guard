@@ -74,11 +74,10 @@ export default class ProfilePage extends PureComponent {
 
   render () {
     const { account } = this.props
-    console.log(account)
     const items = this.state.about.map((item, i) => (
       <AboutItem key={i}>
         <Small>{item.key}</Small>
-        <strong>{item.value}</strong>
+        <strong>{!item.value ? '--' : ''}</strong>
       </AboutItem>
     ))
 
