@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { deleteUser } from '../../actions/users'
 import BreadCrumbs from '../../components/BreadCrumbs'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
@@ -8,9 +10,12 @@ import {
   Title
 } from './styles'
 
-@connect(state => ({
-  users: state.users.users
-}))
+@connect(
+  state => ({
+    users: state.users.users
+  }),
+  dispath => ({ deleteUser: bindActionCreators(deleteUser, dispath) })
+)
 export default class UserList extends PureComponent {
   state = {
     breadcrumbs: [
@@ -26,6 +31,8 @@ export default class UserList extends PureComponent {
   }
 
   filter = (filter, row) => row[filter.id].indexOf(filter.value) !== -1
+
+  delete = id => this.props.deleteUser(id)
 
   render () {
     const columns = [
@@ -96,6 +103,12 @@ export default class UserList extends PureComponent {
       {
         Header: 'Prof Area ',
         accessor: 'profAreaName'
+      },
+      {
+        Header: 'Actions',
+        Cell: (props) => (
+          <button onClick={() => this.delete(props.original.id)}>Delete</button>
+        )
       }
     ]
 

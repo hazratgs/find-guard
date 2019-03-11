@@ -17,9 +17,15 @@ const handleErrorGetUsers = (state) => ({
   error: true
 })
 
+const handleSuccessDeleteUser = (state, removeId) => ({
+  ...state,
+  users: state.users.filter(item => item.id !== removeId)
+})
+
 const reducer = createReducer({
   [actions.successGetUsers]: handleSuccessGetUsers,
-  [actions.errorGetUsers]: handleErrorGetUsers
+  [actions.errorGetUsers]: handleErrorGetUsers,
+  [actions.successDeleteUser]: handleSuccessDeleteUser
 }, initialState)
 
 export default reducer

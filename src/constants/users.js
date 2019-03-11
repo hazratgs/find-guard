@@ -1,3 +1,6 @@
 export const GET_USERS = 'GET_USERS'
 export const SUCCESS_GET_USERS = 'SUCCESS_GET_USERS'
 export const ERROR_GET_USERS = 'ERROR_GET_USERS'
+
+export const DELETE_USER = 'DELETE_USER'
+export const SUCCESS_DELETE_USER = 'SUCCESS_DELETE_USER'

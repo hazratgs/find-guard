@@ -14,6 +14,17 @@ function* getUsers () {
   }
 }
 
+function* deleteUser (action) {
+  try {
+    const method = () => axios.delete(`${api}/extra-users/${action.payload}`)
+    yield call(method)
+    yield put(actions.successDeleteUser(action.payload))
+  } catch (e) {
+    console.log('ERROR DELETE_USER', e)
+  }
+}
+
 export default function* watcher () {
   yield takeLatest(actions.getUsers, getUsers)
+  yield takeLatest(actions.deleteUser, deleteUser)
 }
