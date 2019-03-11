@@ -2,6 +2,9 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
 
+  .ReactTable .-pagination .-btn {
+    height: 36px;
+  }
 `
 
 export const Title = styled.h1`

@@ -91,11 +91,11 @@ export default class ProfileFormStepThree extends PureComponent {
         <Select
           items={[
             { key: '', value: '' },
-            { key: 'Полный день', value: 'NINE_TO_SIX' },
-            { key: 'Сменный график', value: 'Сменный график' },
-            { key: 'Гибкий график', value: 'Гибкий график' },
-            { key: 'Удаленная работа', value: 'Удаленная работа' },
-            { key: 'Вахтовый метод', value: 'Вахтовый метод' }
+            { key: 'Полный день', value: 'FULL_TIME' },
+            { key: 'Сменный график', value: 'SHIFT_WORK' },
+            { key: 'Гибкий график', value: 'FLEXIBLE_SCHEDULE' },
+            { key: 'Удаленная работа', value: 'REMOTE_WORK' },
+            { key: 'Вахтовый метод', value: 'TOUR' }
           ]}
           name='Желаемый график'
           defaultValue={this.state.workSchedule}

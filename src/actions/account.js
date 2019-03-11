@@ -11,6 +11,7 @@ import {
   FILE_UPLOAD,
   ERROR_FILE_UPLOAD,
   ACCOUNT_REGISTER,
+  ERROR_ACCOUNT_REGISTER,
   CLOSE_NOTIF_REGISTEER,
   FORGOT_PASSWORD,
   SUCCESS_FORGOT_PASSWORD,
@@ -33,6 +34,7 @@ export const fileUpload = createAction(FILE_UPLOAD)
 export const errorFileUpload = createAction(ERROR_FILE_UPLOAD)
 
 export const accountRegister = createAction(ACCOUNT_REGISTER)
+export const errorAccountRegister = createAction(ERROR_ACCOUNT_REGISTER)
 export const closeNotifRegister = createAction(CLOSE_NOTIF_REGISTEER)
 
 export const forgotPassword = createAction(FORGOT_PASSWORD)

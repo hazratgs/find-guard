@@ -3,6 +3,7 @@ import * as actions from '../actions/account'
 import { getUsers } from '../actions/users'
 import axios from 'axios'
 import cookies from 'js-cookie'
+import { push } from 'connected-react-router'
 const api = API_SERVER // eslint-disable-line
 
 const POST = (method, data) => axios.post(`${api}${method}`, data)
@@ -27,7 +28,7 @@ function* getAccount () {
     const request = yield call(GET, '/account')
     const account = request.data
     yield put(actions.getSuccessAccount(account))
-    if (account.authorities.includes('ADMIN')) {
+    if (account.authorities.includes('ROLE_ADMIN')) {
       yield put(getUsers())
     }
   } catch (e) {
@@ -83,10 +84,14 @@ function* accountRegister () {
         'Content-Type': 'application/json'
       }
     })
-    const request = yield call(method)
-    console.log(request)
+    yield call(method)
+    yield put(actions.login({
+      username: account.email,
+      password: account.password
+    }))
+    yield put(push('/profile'))
   } catch (e) {
-    console.log(e)
+    yield put(actions.errorAccountRegister(e.message))
   }
 }
 

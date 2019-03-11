@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import {
   Container,
   Title,
@@ -14,6 +15,7 @@ import {
 import BreadCrumbs from '../../components/BreadCrumbs'
 import Notif from '../../components/Notif'
 
+@withRouter
 @connect(state => ({
   account: state.account.account
 }))
@@ -77,7 +79,7 @@ export default class ProfilePage extends PureComponent {
     const items = this.state.about.map((item, i) => (
       <AboutItem key={i}>
         <Small>{item.key}</Small>
-        <strong>{!item.value ? '--' : ''}</strong>
+        <strong>{!item.value ? '--' : item.value}</strong>
       </AboutItem>
     ))
 

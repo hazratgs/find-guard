@@ -78,6 +78,10 @@ export const Description = styled.p`
 export const Form = styled.div`
   width: 320px;
   margin: 30px auto 15px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `
 
 export const Input = styled.input`
