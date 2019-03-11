@@ -12,7 +12,8 @@ export const Container = styled.div`
   }
 `
 
-export const Logo = styled.div`
+export const Logo = styled(NavLink)`
+  display: block;
   width: 80px;
   height: 80px;
   background-image: url('/img/logo-min.svg');

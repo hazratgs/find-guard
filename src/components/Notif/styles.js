@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   background-color: #2B93FE;
@@ -47,4 +48,10 @@ export const Close = styled.button`
   &:hover {
     opacity: 1;
   }
+`
+
+export const Button = styled(Link)`
+  color: #fff;
+  display: block;
+  margin-top: 10px;
 `

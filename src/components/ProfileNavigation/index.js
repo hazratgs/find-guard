@@ -3,6 +3,7 @@ import { array } from 'prop-types'
 import { Container, Logo, NavWrapper, NavItem } from './styles'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import ExitButton from '../ExitButton'
 
 @withRouter
 @connect(state => ({ admin: state.account.admin }))
@@ -23,10 +24,11 @@ export default class ProfileNavigation extends PureComponent {
 
     return (
       <Container>
-        <Logo />
+        <Logo to='/'/>
         <NavWrapper>
           {items}
         </NavWrapper>
+        <ExitButton />
       </Container>
     )
   }
