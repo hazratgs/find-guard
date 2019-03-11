@@ -79,7 +79,7 @@ export default class ProfilePage extends PureComponent {
     const items = this.state.about.map((item, i) => (
       <AboutItem key={i}>
         <Small>{item.key}</Small>
-        <strong>{!item.value ? '--' : item.value}</strong>
+        <strong>{!item.value ? '--' : item.key === '' ? '' : item.value}</strong>
       </AboutItem>
     ))
 
@@ -101,7 +101,7 @@ export default class ProfilePage extends PureComponent {
         </About>
         <Text>
           <Small>Напишите немного о себе</Small>
-          <p>{account.about}</p>
+          <p>{account.comment}</p>
         </Text>
         <Small>Прикрепленные файлы</Small>
         <Docs>

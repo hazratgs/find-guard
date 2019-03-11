@@ -48,27 +48,24 @@ export default class UserList extends PureComponent {
         accessor: 'middleName'
       },
       {
-        Header: 'Birth Date',
+        Header: 'Дата рождения',
         accessor: 'birthDate'
       },
       {
-        Header: 'Sex',
-        accessor: 'sex'
+        Header: 'Пол',
+        accessor: 'sex',
+        Cell: (props) => props.value === 'MALE' ? 'Мужской' : 'Женский'
       },
       {
-        Header: 'Phone',
+        Header: 'Телефон',
         accessor: 'phone'
       },
       {
-        Header: 'Driver License',
-        accessor: 'driverLicense'
+        Header: '№ прав',
+        accessor: 'driverLicenseNumber'
       },
       {
-        Header: 'Gun License',
-        accessor: 'gunLicense'
-      },
-      {
-        Header: 'Gun License Number',
+        Header: '№ лицензии на оружие',
         accessor: 'gunLicenseNumber'
       },
       {
