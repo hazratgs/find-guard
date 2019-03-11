@@ -1,15 +1,21 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { closeNotifRegister } from '../../actions/account'
+import { closeNotifRegister, logout } from '../../actions/account'
 import { Container, Icon, Title, Description, Close, Button } from './styles'
 
 @connect(
   state => ({ register: state.account.register }),
-  dispatch => ({ close: bindActionCreators(closeNotifRegister, dispatch) })
+  dispatch => ({
+    close: bindActionCreators(closeNotifRegister, dispatch),
+    logout: bindActionCreators(logout, dispatch)
+  })
 )
 export default class Notif extends PureComponent {
-  close = () => this.props.close()
+  close = () => {
+    this.props.close()
+    this.props.logout()
+  }
 
   render () {
     if (!this.props.register) return null

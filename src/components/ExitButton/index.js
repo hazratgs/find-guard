@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react'
 import cookies from 'js-cookie'
+import { Container } from './styles'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { logout } from '../../actions/account'
-import { Container } from './styles'
 
 @connect(
   null,
