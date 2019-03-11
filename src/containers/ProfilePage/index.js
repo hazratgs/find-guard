@@ -44,7 +44,6 @@ export default class ProfilePage extends PureComponent {
       { key: 'Дата рождения', value: '--' },
       { key: 'Водительские права', value: '--' },
       { key: '', value: '' },
-      { key: 'Профессиональная область', value: '--' },
       { key: 'Опыт работы в сфере (лет)', value: '--' }
     ]
   }
@@ -66,7 +65,6 @@ export default class ProfilePage extends PureComponent {
           { key: 'Дата рождения', value: account.birthDate },
           { key: 'Водительские права', value: '№ ' + account.driverLicenseNumber },
           { key: '', value: '' },
-          { key: 'Профессиональная область', value: account.professionalArea },
           { key: 'Опыт работы в сфере (лет)', value: account.experienceYears }
         ]
       }
