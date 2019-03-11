@@ -92,6 +92,41 @@ const handleErrorForgotPassword = (state) => ({
   successForgotPassword: false
 })
 
+const handleLogout = (state) => ({
+  ...state,
+  login: false,
+  token: null,
+  admin: false,
+  errorLogin: false,
+  register: false,
+  successForgotPassword: false,
+  errorForgotPassword: false,
+  account: {
+    lastName: '',
+    firstName: '',
+    middleName: '',
+    sex: '',
+    birthDate: '',
+    regionId: '',
+    workRegionId: '',
+    phone: '',
+    login: '',
+    email: '',
+    driverLicense: false,
+    driverLicenseNumber: '',
+    gunLicense: false,
+    gunLicenseNumber: '',
+    professionalArea: '',
+    experienceYears: '',
+    employmentType: '',
+    workSchedule: '',
+    desiredSalary: '',
+    comment: '',
+    files: []
+  },
+  errorAccount: false
+})
+
 const reducer = createReducer({
   [actions.successLogin]: handleSuccessLogin,
   [actions.errorLogin]: handleErrorLogin,
@@ -101,7 +136,8 @@ const reducer = createReducer({
   [actions.accountRegister]: handleAccountRegister,
   [actions.closeNotifRegister]: handleCloseNotifRegister,
   [actions.successForgotPassword]: handleSuccessForgotPassword,
-  [actions.errorForgotPassword]: handleErrorForgotPassword
+  [actions.errorForgotPassword]: handleErrorForgotPassword,
+  [actions.logout]: handleLogout
 }, initialState)
 
 export default reducer

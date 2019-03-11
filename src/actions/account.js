@@ -15,7 +15,8 @@ import {
   CLOSE_NOTIF_REGISTEER,
   FORGOT_PASSWORD,
   SUCCESS_FORGOT_PASSWORD,
-  ERROR_FORGOT_PASSWORD
+  ERROR_FORGOT_PASSWORD,
+  LOGOUT
 } from '../constants/account'
 
 export const login = createAction(LOGIN)
@@ -40,3 +41,5 @@ export const closeNotifRegister = createAction(CLOSE_NOTIF_REGISTEER)
 export const forgotPassword = createAction(FORGOT_PASSWORD)
 export const successForgotPassword = createAction(SUCCESS_FORGOT_PASSWORD)
 export const errorForgotPassword = createAction(ERROR_FORGOT_PASSWORD)
+
+export const logout = createAction(LOGOUT)
