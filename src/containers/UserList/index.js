@@ -40,75 +40,80 @@ export default class UserList extends PureComponent {
   render () {
     const columns = [
       {
-        Header: 'ID Пользователя',
-        accessor: 'id'
-      },
-      {
-        Header: 'Фамилия',
-        accessor: 'middleName'
-      },
-      {
-        Header: 'Дата рождения',
-        accessor: 'birthDate'
-      },
-      {
-        Header: 'Пол',
-        accessor: 'sex',
-        Cell: (props) => props.value === 'MALE' ? 'Мужской' : 'Женский'
-      },
-      {
-        Header: 'Телефон',
-        accessor: 'phone'
-      },
-      {
-        Header: '№ прав',
-        accessor: 'driverLicenseNumber'
-      },
-      {
-        Header: '№ лицензии на оружие',
-        accessor: 'gunLicenseNumber'
-      },
-      {
-        Header: 'Experience Years',
-        accessor: 'experienceYears'
-      },
-      {
-        Header: 'Employment Type',
-        accessor: 'employmentType'
-      },
-      {
-        Header: 'Work Schedule',
-        accessor: 'workSchedule'
-      },
-      {
-        Header: 'Desired Salary',
-        accessor: 'desiredSalary'
-      },
-      {
-        Header: 'Comment',
-        accessor: 'comment'
-      },
-      {
-        Header: 'CV',
-        accessor: 'cvPath'
-      },
-      {
-        Header: 'Region',
-        accessor: 'regionName'
-      },
-      {
-        Header: 'Work Region',
-        accessor: 'workRegionName'
-      },
-      {
-        Header: 'Prof Area ',
-        accessor: 'profAreaName'
-      },
-      {
-        Header: 'Actions',
-        Cell: (props) => (
-          <button onClick={() => this.delete(props.original.id)}>Delete</button>
-        )
+        Header: 'Name',
+        columns: [
+          {
+            Header: 'ID Пользователя',
+            accessor: 'id'
+          },
+          {
+            Header: 'Фамилия',
+            accessor: 'middleName'
+          },
+          {
+            Header: 'Дата рождения',
+            accessor: 'birthDate'
+          },
+          {
+            Header: 'Пол',
+            accessor: 'sex',
+            Cell: (props) => props.value === 'MALE' ? 'Мужской' : 'Женский'
+          },
+          {
+            Header: 'Телефон',
+            accessor: 'phone'
+          },
+          {
+            Header: '№ прав',
+            accessor: 'driverLicenseNumber'
+          },
+          {
+            Header: '№ лицензии на оружие',
+            accessor: 'gunLicenseNumber'
+          },
+          {
+            Header: 'Experience Years',
+            accessor: 'experienceYears'
+          },
+          {
+            Header: 'Employment Type',
+            accessor: 'employmentType'
+          },
+          {
+            Header: 'Work Schedule',
+            accessor: 'workSchedule'
+          },
+          {
+            Header: 'Desired Salary',
+            accessor: 'desiredSalary'
+          },
+          {
+            Header: 'Comment',
+            accessor: 'comment'
+          },
+          {
+            Header: 'CV',
+            accessor: 'cvPath'
+          },
+          {
+            Header: 'Region',
+            accessor: 'regionName'
+          },
+          {
+            Header: 'Work Region',
+            accessor: 'workRegionName'
+          },
+          {
+            Header: 'Prof Area ',
+            accessor: 'profAreaName'
+          },
+          {
+            Header: 'Actions',
+            Cell: (props) => (
+              <button onClick={() => this.delete(props.original.id)}>Delete</button>
+            )
+          }
+        ]
       }
     ]
 

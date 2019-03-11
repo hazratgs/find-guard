@@ -71,7 +71,7 @@ export default class ProfileFormStepOne extends PureComponent {
       const data = {
         lastName: state.lastName,
         firstName: state.firstName,
-        middleName: `${state.firstName} ${state.firstName} ${state.middleName}`,
+        middleName: `${state.lastName} ${state.firstName} ${state.middleName}`,
         sex: state.sex,
         birthDate: state.birthDate !== '' ? `${year}-${month}-${day}` : state.birthDate,
         regionId: state.regionId,
