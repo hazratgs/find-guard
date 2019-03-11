@@ -40,11 +40,11 @@ export default class UserList extends PureComponent {
   render () {
     const columns = [
       {
-        Header: 'ID',
+        Header: 'ID Пользователя',
         accessor: 'id'
       },
       {
-        Header: 'Name',
+        Header: 'Фамилия',
         accessor: 'middleName'
       },
       {
