@@ -35,6 +35,6 @@ export const Button = styled.button`
   }
 
   img {
-
+    width: 24px;
   }
 `

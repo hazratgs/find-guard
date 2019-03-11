@@ -30,7 +30,10 @@ export default class UserList extends PureComponent {
     ]
   }
 
-  filter = (filter, row) => row[filter.id].indexOf(filter.value) !== -1
+  filter = (filter, row) => {
+    const value = row[filter.id].toString().toLowerCase()
+    return value.indexOf(filter.value.toLowerCase()) !== -1
+  }
 
   delete = id => this.props.deleteUser(id)
 

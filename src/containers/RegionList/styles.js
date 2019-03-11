@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
 
@@ -12,6 +13,9 @@ export const Title = styled.h1`
   font-size: 24px;
   color: #191C23;
   margin: 0 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export const Small = styled.span`
@@ -20,4 +24,15 @@ export const Small = styled.span`
   opacity: 0.4;
   font-family: Ubuntu;
   display: block;
+`
+
+export const Button = styled(Link)`
+  font-size: 14px;
+  text-transform: none;
+  text-decoration: none;
+  color: #2B93FE;
+  background-color: #fff;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-weight: normal;
 `

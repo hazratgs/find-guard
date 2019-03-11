@@ -7,7 +7,8 @@ import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import {
   Container,
-  Title
+  Title,
+  Button
 } from './styles'
 
 @connect(
@@ -24,8 +25,8 @@ export default class UserList extends PureComponent {
         to: '/'
       },
       {
-        name: 'Список пользователей',
-        to: '/profile/user-list'
+        name: 'Список регионов',
+        to: '/profile/region-list'
       }
     ]
   }
@@ -65,7 +66,10 @@ export default class UserList extends PureComponent {
     return (
       <Container>
         <BreadCrumbs items={this.state.breadcrumbs}/>
-        <Title>Список регионов</Title>
+        <Title>
+          Список регионов
+          <Button to='/profile/region-form'>Добавить</Button>
+        </Title>
         <ReactTable
           data={this.props.regions}
           columns={columns}

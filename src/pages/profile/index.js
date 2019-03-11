@@ -8,6 +8,7 @@ import ProfileForm from '../../containers/ProfileForm'
 import ProfilePage from '../../containers/ProfilePage'
 import UserList from '../../containers/UserList'
 import RegionList from '../../containers/RegionList'
+import RegionForm from '../../containers/RegionForm'
 
 @withRouter
 @connect()
@@ -30,6 +31,7 @@ export default class Profile extends PureComponent {
             <Route path='/profile/form' component={ProfileForm} />
             <Route path='/profile/user-list' component={UserList} />
             <Route path='/profile/region-list' component={RegionList} />
+            <Route path='/profile/region-form' component={RegionForm} />
           </Switch>
         </Content>
       </Container>

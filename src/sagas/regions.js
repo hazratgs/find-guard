@@ -1,6 +1,7 @@
 import { takeLatest, call, put } from 'redux-saga/effects'
 import * as actions from '../actions/regions'
 import axios from 'axios'
+import { push } from 'connected-react-router'
 const api = API_SERVER // eslint-disable-line
 
 // const POST = (method, data) => axios.post(`${api}${method}`, data)
@@ -26,7 +27,19 @@ function* deleteRegion (action) {
   }
 }
 
+function* addRegion (action) {
+  try {
+    const method = (data) => axios.post(`${api}/regions`, data)
+    yield call(method, action.payload)
+    yield put(actions.getRegions())
+    yield put(push('/profile/region-list'))
+  } catch (e) {
+    console.log('ERROR ADD_REGION', e)
+  }
+}
+
 export default function* watcher () {
   yield takeLatest(actions.getRegions, getRegions)
   yield takeLatest(actions.deleteRegion, deleteRegion)
+  yield takeLatest(actions.addRegion, addRegion)
 }
