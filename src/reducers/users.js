@@ -2,13 +2,13 @@ import { createReducer } from 'redux-act'
 import * as actions from '../actions/users'
 
 const initialState = {
-  users: [],
+  data: [],
   error: false
 }
 
 const handleSuccessGetUsers = (state, payload) => ({
   ...state,
-  users: payload,
+  data: payload,
   error: false
 })
 
@@ -19,7 +19,7 @@ const handleErrorGetUsers = (state) => ({
 
 const handleSuccessDeleteUser = (state, removeId) => ({
   ...state,
-  users: state.users.filter(item => item.id !== removeId)
+  data: state.data.filter(item => item.id !== removeId)
 })
 
 const reducer = createReducer({

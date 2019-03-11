@@ -16,6 +16,17 @@ function* getRegions () {
   }
 }
 
+function* deleteRegion (action) {
+  try {
+    const method = () => axios.delete(`${api}/regions/${action.payload}`)
+    yield call(method)
+    yield put(actions.successDeleteRegion(action.payload))
+  } catch (e) {
+    console.log('ERROR DELETE_REGION', e)
+  }
+}
+
 export default function* watcher () {
   yield takeLatest(actions.getRegions, getRegions)
+  yield takeLatest(actions.deleteRegion, deleteRegion)
 }

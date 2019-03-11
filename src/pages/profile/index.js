@@ -7,6 +7,7 @@ import ProfileNavigation from '../../components/ProfileNavigation'
 import ProfileForm from '../../containers/ProfileForm'
 import ProfilePage from '../../containers/ProfilePage'
 import UserList from '../../containers/UserList'
+import RegionList from '../../containers/RegionList'
 
 @withRouter
 @connect()
@@ -14,7 +15,8 @@ export default class Profile extends PureComponent {
   state = {
     routes: [
       { to: '/profile', icon: '/img/user.svg' },
-      { to: '/profile/user-list', icon: '/img/user-list.svg', admin: true }
+      { to: '/profile/user-list', icon: '/img/user-list.svg', admin: true },
+      { to: '/profile/region-list', icon: '/img/earth.svg', admin: true }
     ]
   }
 
@@ -27,6 +29,7 @@ export default class Profile extends PureComponent {
             <Route path='/profile' exact component={ProfilePage} />
             <Route path='/profile/form' component={ProfileForm} />
             <Route path='/profile/user-list' component={UserList} />
+            <Route path='/profile/region-list' component={RegionList} />
           </Switch>
         </Content>
       </Container>

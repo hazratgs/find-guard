@@ -12,7 +12,7 @@ import {
 
 @connect(
   state => ({
-    users: state.users.users
+    users: state.users.data
   }),
   dispath => ({ deleteUser: bindActionCreators(deleteUser, dispath) })
 )

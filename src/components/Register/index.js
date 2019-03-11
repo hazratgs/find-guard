@@ -42,7 +42,7 @@ export default class Register extends PureComponent {
   buttonStatus = () => {
     const errors = []
     if (!isEmail(this.state.email)) errors.push('email')
-    if (this.state.password !== null && this.state.password.length === 0) errors.push('password')
+    if (this.state.password !== null && this.state.password.length < 6) errors.push('password')
     if (this.state.confirmPassword !== null && this.state.confirmPassword.length === 0) errors.push('confirmPassword')
     if (this.state.confirmPassword !== this.state.password) errors.push('confirmPassword')
 

@@ -16,9 +16,15 @@ const handleErrorRegions = (state) => ({
   error: true
 })
 
+const handleSuccessDeleteRegion = (state, removeId) => ({
+  ...state,
+  data: state.data.filter(item => item.id !== removeId)
+})
+
 const reducer = createReducer({
   [actions.successRegions]: handleSuccessRegions,
-  [actions.errorRegions]: handleErrorRegions
+  [actions.errorRegions]: handleErrorRegions,
+  [actions.successDeleteRegion]: handleSuccessDeleteRegion
 }, initialState)
 
 export default reducer
