@@ -80,8 +80,8 @@ export default class ProfileFormStepThree extends PureComponent {
             { key: 'Полная занятость', value: 'FULL' },
             { key: 'Частичная занятость', value: 'PARTIAL' },
             { key: 'Проектная/Временная работа', value: 'Проектная/Временная работа' },
-            { key: 'Волонтерство', value: 'Волонтерство' },
-            { key: 'Стажировка', value: 'Стажировка' }
+            { key: 'Волонтерство', value: 'VOLUNTEERING' },
+            { key: 'Стажировка', value: 'INTERNSHIP' }
           ]}
           name='Тип занятости'
           defaultValue={this.state.employmentType}
