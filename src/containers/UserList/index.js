@@ -90,8 +90,8 @@ export default class UserList extends PureComponent {
     tb.appendChild(tbody)
 
     TableExport.prototype.charset = 'charset=utf-8'
-    const table = TableExport(tb, { exportButtons: false, formats: ['xls'] })
-    const XLS = table.CONSTANTS.FORMAT.XLS
+    const table = TableExport(tb, { exportButtons: false, formats: ['xlsx', 'csv', 'txt'] })
+    const XLS = table.CONSTANTS.FORMAT.XLSX
     const exportDataXLS = table.getExportData()[tb.getAttribute('tableexport-key')][XLS]
     table.export2file(exportDataXLS.data, exportDataXLS.mimeType, exportDataXLS.filename, exportDataXLS.fileExtension)
   }
