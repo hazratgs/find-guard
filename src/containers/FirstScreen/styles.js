@@ -10,6 +10,7 @@ export const Container = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow-x: hidden;
 
   @media (max-width: 768px) {
     min-height: auto;
