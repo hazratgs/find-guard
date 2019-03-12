@@ -54,6 +54,7 @@ export const AboutItem = styled.div`
     color: #191C23;
     display: block;
     margin-top: 5px;
+    min-height: 20px;
   }
 
   @media (max-width: 758px) {

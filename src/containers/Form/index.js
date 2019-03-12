@@ -12,7 +12,8 @@ import {
   Button,
   NavLink,
   ErrorMessage,
-  SuccessMessage
+  SuccessMessage,
+  Label
 } from './styles'
 
 export default class FormWrapper extends PureComponent {
@@ -25,6 +26,7 @@ export default class FormWrapper extends PureComponent {
     title: propTypes.string.isRequired,
     description: propTypes.string,
     agreement: propTypes.array,
+    checkbox: propTypes.array,
     button: propTypes.string,
     link: propTypes.string,
     linkPath: propTypes.string,
@@ -64,6 +66,12 @@ export default class FormWrapper extends PureComponent {
               <Agreement>
                 {this.props.agreement}
               </Agreement>
+            )}
+            {this.props.checkbox && (
+              <Label onChange={(e) => this.props.change('checkbox')({ target: { value: e.target.checked } })}>
+                <input type='checkbox' />
+                <span>{this.props.checkbox}</span>
+              </Label>
             )}
             <Button
               onClick={this.props.send}

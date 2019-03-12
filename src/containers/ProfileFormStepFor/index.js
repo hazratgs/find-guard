@@ -76,7 +76,7 @@ export default class ProfileFormStepFor extends PureComponent {
             <img src='/img/form-check.svg' />
           </Button>
           <AppTerms>
-            Нажимая «Отправить» вы датете согласе<br />на обоработку персональных данных
+            Нажимая «Отправить» вы даете согласие<br />на обоработку персональных данных
           </AppTerms>
         </ButtonWrapper>
         <Dots active={3} />

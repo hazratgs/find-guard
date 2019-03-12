@@ -180,3 +180,26 @@ export const SuccessMessage = styled.div`
   width: 640px;
   text-align: center;
 `
+
+export const Label = styled.label`
+  font-size: 12px;
+  padding: 10px 0;
+  display: flex;
+  text-align: left;
+  cursor: pointer;
+  
+
+  a {
+    color: #0092ff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  input {
+    position: relative;
+    margin-right: 10px;
+  }
+`

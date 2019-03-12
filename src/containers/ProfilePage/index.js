@@ -32,19 +32,19 @@ export default class ProfilePage extends PureComponent {
       }
     ],
     about: [
-      { key: 'Пол', value: '--' },
-      { key: 'Телефон', value: '--' },
-      { key: 'Тип занятости', value: '--' },
-      { key: 'Регион проживания', value: '--' },
-      { key: 'Электронная почта', value: '--' },
-      { key: 'Желаемый график', value: '--' },
-      { key: 'Желаемый регион работы', value: '--' },
-      { key: 'Разрешение на оружие', value: '--' },
-      { key: 'Желаемый уровень зарплаты', value: '--' },
-      { key: 'Дата рождения', value: '--' },
-      { key: 'Водительские права', value: '--' },
+      { key: 'Пол', value: '' },
+      { key: 'Телефон', value: '' },
+      { key: 'Тип занятости', value: '' },
+      { key: 'Регион проживания', value: '' },
+      { key: 'Электронная почта', value: '' },
+      { key: 'Желаемый график', value: '' },
+      { key: 'Желаемый регион работы', value: '' },
+      { key: 'Разрешение на оружие', value: '' },
+      { key: 'Желаемый уровень зарплаты', value: '' },
+      { key: 'Дата рождения', value: '' },
+      { key: 'Водительские права', value: '' },
       { key: '', value: '' },
-      { key: 'Опыт работы в сфере (лет)', value: '--' }
+      { key: 'Опыт работы в сфере (лет)', value: '' }
     ]
   }
 
@@ -77,7 +77,7 @@ export default class ProfilePage extends PureComponent {
     const items = this.state.about.map((item, i) => (
       <AboutItem key={i}>
         <Small>{item.key}</Small>
-        <strong>{!item.value ? '--' : item.key === '' ? '' : item.value}</strong>
+        <strong>{!item.value ? '' : item.key === '' ? '' : item.value}</strong>
       </AboutItem>
     ))
 

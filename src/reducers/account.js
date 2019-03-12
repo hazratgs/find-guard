@@ -1,6 +1,30 @@
 import { createReducer } from 'redux-act'
 import * as actions from '../actions/account'
 
+const account = {
+  lastName: '',
+  firstName: '',
+  middleName: '',
+  sex: '',
+  birthDate: '',
+  regionId: '',
+  workRegionId: '',
+  phone: '',
+  login: '',
+  email: '',
+  driverLicense: false,
+  driverLicenseNumber: '',
+  gunLicense: false,
+  gunLicenseNumber: '',
+  professionalArea: '',
+  experienceYears: '',
+  employmentType: '',
+  workSchedule: '',
+  desiredSalary: '',
+  comment: '',
+  files: []
+}
+
 const initialState = {
   login: false,
   token: null,
@@ -9,29 +33,7 @@ const initialState = {
   register: false,
   successForgotPassword: false,
   errorForgotPassword: false,
-  account: {
-    lastName: '',
-    firstName: '',
-    middleName: '',
-    sex: '',
-    birthDate: '',
-    regionId: '',
-    workRegionId: '',
-    phone: '',
-    login: '',
-    email: '',
-    driverLicense: false,
-    driverLicenseNumber: '',
-    gunLicense: false,
-    gunLicenseNumber: '',
-    professionalArea: '',
-    experienceYears: '',
-    employmentType: '',
-    workSchedule: '',
-    desiredSalary: '',
-    comment: '',
-    files: []
-  },
+  account: account,
   errorAccount: false
 }
 
@@ -39,6 +41,7 @@ const handleSuccessLogin = (state, payload) => ({
   ...state,
   login: true,
   token: payload,
+  account: account,
   errorLogin: false
 })
 

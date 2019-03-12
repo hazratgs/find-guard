@@ -21,6 +21,7 @@ export default class Register extends PureComponent {
     email: null,
     password: null,
     confirmPassword: null,
+    checkbox: false,
     errors: [],
     buttonStatus: false,
     requestFailed: false
@@ -45,6 +46,7 @@ export default class Register extends PureComponent {
     if (this.state.password !== null && this.state.password.length < 6) errors.push('password')
     if (this.state.confirmPassword !== null && this.state.confirmPassword.length === 0) errors.push('confirmPassword')
     if (this.state.confirmPassword !== this.state.password) errors.push('confirmPassword')
+    if (!this.state.checkbox) errors.push('checkbox')
 
     const button = () => {
       const nullStatus = (
@@ -68,9 +70,9 @@ export default class Register extends PureComponent {
         change={this.change}
         buttonStatus={this.buttonStatus}
         title='Регистрация'
-        agreement={[
+        checkbox={[
           'Регистрируясь вы соглашаетесь с ',
-          <a key='agreement-1' href="#">условиями сервиса</a>
+          <a key='agreement-1' target='_blank' href="/app_terms.html">условиями сервиса</a>
         ]}
         button='Зарегистрироваться'
         link='Войти'

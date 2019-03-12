@@ -47,7 +47,7 @@ export default class UserList extends PureComponent {
             accessor: 'id'
           },
           {
-            Header: 'Фамилия',
+            Header: 'ФИО',
             accessor: 'middleName'
           },
           {
@@ -72,43 +72,68 @@ export default class UserList extends PureComponent {
             accessor: 'gunLicenseNumber'
           },
           {
-            Header: 'Experience Years',
-            accessor: 'experienceYears'
+            Header: 'Опыт работы в сфере (лет)',
+            accessor: 'experienceYears',
+            Cell: (props) => {
+              const items = {
+                0: 'Нет опыта',
+                1: 'От 1 года до 3 лет',
+                3: 'От 3 до 6 лет',
+                6: 'Более 6 лет'
+              }
+              return items[props.value]
+            }
           },
           {
-            Header: 'Employment Type',
-            accessor: 'employmentType'
+            Header: 'Тип занятости',
+            accessor: 'employmentType',
+            Cell: (props) => {
+              const items = {
+                FULL: 'Полная занятость',
+                PARTIAL: 'Частичная занятость',
+                PROJECT: 'Проектная/Временная работа',
+                VOLUNTEERING: 'Волонтерство',
+                INTERNSHIP: 'Стажировка'
+              }
+              return items[props.value]
+            }
           },
           {
-            Header: 'Work Schedule',
-            accessor: 'workSchedule'
+            Header: 'Желаемый график',
+            accessor: 'workSchedule',
+            Cell: (props) => {
+              const items = {
+                FULL_TIME: 'Полный день',
+                SHIFT_WORK: 'Сменный график',
+                FLEXIBLE_SCHEDULE: 'Гибкий график',
+                REMOTE_WORK: 'Удаленная работа',
+                TOUR: 'Вахтовый метод'
+              }
+              return items[props.value]
+            }
           },
           {
-            Header: 'Desired Salary',
+            Header: 'Желаемый уровень зарплаты',
             accessor: 'desiredSalary'
           },
           {
-            Header: 'Comment',
+            Header: 'Напишите немного о себе',
             accessor: 'comment'
           },
+          // {
+          //   Header: 'CV',
+          //   accessor: 'cvPath'
+          // },
           {
-            Header: 'CV',
-            accessor: 'cvPath'
-          },
-          {
-            Header: 'Region',
+            Header: 'Регион проживания',
             accessor: 'regionName'
           },
           {
-            Header: 'Work Region',
+            Header: 'Желаемый регион работы',
             accessor: 'workRegionName'
           },
           {
-            Header: 'Prof Area ',
-            accessor: 'profAreaName'
-          },
-          {
-            Header: 'Actions',
+            Header: 'Действия',
             Cell: (props) => (
               <button onClick={() => this.delete(props.original.id)}>Delete</button>
             )
