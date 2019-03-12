@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { deleteUser } from '../../actions/users'
 import BreadCrumbs from '../../components/BreadCrumbs'
 import ReactTable from 'react-table'
+import 'xlsx'
 import 'file-saverjs'
 import TableExport from 'tableexport'
 import 'blobjs'
@@ -89,10 +90,10 @@ export default class UserList extends PureComponent {
     tb.appendChild(tbody)
 
     TableExport.prototype.charset = 'charset=utf-8'
-    const table = TableExport(tb, { exportButtons: false, formats: ['csv'] })
-    const CSV = table.CONSTANTS.FORMAT.CSV
-    const exportDataCSV = table.getExportData()[tb.getAttribute('tableexport-key')][CSV]
-    table.export2file(exportDataCSV.data, exportDataCSV.mimeType, exportDataCSV.filename, exportDataCSV.fileExtension)
+    const table = TableExport(tb, { exportButtons: false, formats: ['xls'] })
+    const XLS = table.CONSTANTS.FORMAT.XLS
+    const exportDataXLS = table.getExportData()[tb.getAttribute('tableexport-key')][XLS]
+    table.export2file(exportDataXLS.data, exportDataXLS.mimeType, exportDataXLS.filename, exportDataXLS.fileExtension)
   }
 
   render () {
