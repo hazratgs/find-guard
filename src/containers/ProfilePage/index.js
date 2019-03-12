@@ -17,7 +17,8 @@ import Notif from '../../components/Notif'
 
 @withRouter
 @connect(state => ({
-  account: state.account.account
+  account: state.account.account,
+  regions: state.regions.data
 }))
 export default class ProfilePage extends PureComponent {
   state = {
@@ -72,12 +73,52 @@ export default class ProfilePage extends PureComponent {
     return null
   }
 
+  normalize = (key, value) => {
+    const regions = this.props.regions.map((item) => ({ key: item.name, value: item.id }))
+    if (key === 'Регион проживания' || key === 'Желаемый регион работы') {
+      const [find] = regions.filter(item => item.value === parseInt(value))
+      console.log(find)
+      return find.key
+    }
+    if (key === 'Пол') return value === 'MALE' ? 'Мужской' : 'Женский'
+    if (key === 'Опыт работы в сфере (лет)') {
+      const items = {
+        0: 'Нет опыта',
+        1: 'От 1 года до 3 лет',
+        3: 'От 3 до 6 лет',
+        6: 'Более 6 лет'
+      }
+      return items[value]
+    }
+    if (key === 'Тип занятости') {
+      const items = {
+        FULL: 'Полная занятость',
+        PARTIAL: 'Частичная занятость',
+        PROJECT: 'Проектная/Временная работа',
+        VOLUNTEERING: 'Волонтерство',
+        INTERNSHIP: 'Стажировка'
+      }
+      return items[value]
+    }
+    if (key === 'Желаемый график') {
+      const items = {
+        FULL_TIME: 'Полный день',
+        SHIFT_WORK: 'Сменный график',
+        FLEXIBLE_SCHEDULE: 'Гибкий график',
+        REMOTE_WORK: 'Удаленная работа',
+        TOUR: 'Вахтовый метод'
+      }
+      return items[value]
+    }
+    return value
+  }
+
   render () {
     const { account } = this.props
     const items = this.state.about.map((item, i) => (
       <AboutItem key={i}>
         <Small>{item.key}</Small>
-        <strong>{!item.value ? '' : item.key === '' ? '' : item.value}</strong>
+        <strong>{!item.value ? '' : item.key === '' ? '' : this.normalize(item.key, item.value)}</strong>
       </AboutItem>
     ))
 
@@ -89,7 +130,7 @@ export default class ProfilePage extends PureComponent {
       <Container>
         <BreadCrumbs items={this.state.breadcrumbs}/>
         <Notif />
-        <Title>{account.lastName} {account.firstName} {account.middleName}</Title>
+        <Title>{account.middleName}</Title>
         <ReadButton to='/profile/form'>
           <img src='/img/read.svg'/>
           Редактировать данные

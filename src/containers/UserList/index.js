@@ -88,6 +88,7 @@ export default class UserList extends PureComponent {
     })
     tb.appendChild(tbody)
 
+    TableExport.prototype.charset = 'charset=utf-8'
     const table = TableExport(tb, { exportButtons: false, formats: ['csv'] })
     const CSV = table.CONSTANTS.FORMAT.CSV
     const exportDataCSV = table.getExportData()[tb.getAttribute('tableexport-key')][CSV]
