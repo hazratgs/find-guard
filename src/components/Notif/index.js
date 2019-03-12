@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { closeNotifRegister, logout } from '../../actions/account'
-import { Container, Icon, Title, Description, Close, Button } from './styles'
+import { Container, Icon, Title, Description, Close } from './styles'
 
 @connect(
   state => ({ register: state.account.register }),
@@ -14,7 +14,7 @@ import { Container, Icon, Title, Description, Close, Button } from './styles'
 export default class Notif extends PureComponent {
   close = () => {
     this.props.close()
-    this.props.logout()
+    // this.props.logout()
   }
 
   render () {
@@ -26,7 +26,6 @@ export default class Notif extends PureComponent {
         <div>
           <Title>Ваша заявка принята.</Title>
           <Description>В ближайшее время с Вами сяжется наш менеджер</Description>
-          <Button to='/'>Перейти на главную</Button>
         </div>
       </Container>
     )
