@@ -1,4 +1,5 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
 import * as actions from '../actions/account'
 import { getUsers } from '../actions/users'
 import axios from 'axios'
@@ -125,6 +126,9 @@ function* saveAccount () {
     yield call(method)
   } catch (e) {
     yield put(actions.errorSaveAccount())
+    yield put(actions.getAccount())
+    yield delay(3000)
+    yield put(push('/profile'))
   }
 }
 

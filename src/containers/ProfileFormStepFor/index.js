@@ -90,7 +90,7 @@ export default class ProfileFormStepFor extends PureComponent {
         </ButtonWrapper>
         <Dots active={3} />
         {this.props.errorSaveAccount && (
-          <ErrorMessage>Возникла ошибка, попробуйте отправить форму позже</ErrorMessage>
+          <ErrorMessage>Для внесения изменений в профиль требуется активация аккаунта</ErrorMessage>
         )}
       </Fragment>
     )
