@@ -4,10 +4,14 @@ import { bindActionCreators } from 'redux'
 import { deleteUser } from '../../actions/users'
 import BreadCrumbs from '../../components/BreadCrumbs'
 import ReactTable from 'react-table'
+import 'file-saverjs'
+import TableExport from 'tableexport'
+import 'blobjs'
 import 'react-table/react-table.css'
 import {
   Container,
-  Title
+  Title,
+  Button
 } from './styles'
 
 @connect(
@@ -36,6 +40,59 @@ export default class UserList extends PureComponent {
   }
 
   delete = id => this.props.deleteUser(id)
+
+  export = () => {
+    const tb = document.createElement('table')
+    const tbody = document.createElement('tbody')
+    const keys = ['id', 'middleName', 'birthDate', 'sex', 'phone', 'driverLicenseNumber', 'gunLicenseNumber', 'experienceYears', 'employmentType', 'workSchedule', 'desiredSalary', 'comment', 'regionName', 'workRegionName']
+    this.props.users.map(item => {
+      const tr = document.createElement('tr')
+      Object.keys(item).map(key => {
+        if (!keys.includes(key)) return null
+        let value = item[key]
+        if (key === 'sex') value = value === 'MALE' ? 'Мужской' : 'Женский'
+        if (key === 'experienceYears') {
+          const items = {
+            0: 'Нет опыта',
+            1: 'От 1 года до 3 лет',
+            3: 'От 3 до 6 лет',
+            6: 'Более 6 лет'
+          }
+          value = items[value]
+        }
+        if (key === 'employmentType') {
+          const items = {
+            FULL: 'Полная занятость',
+            PARTIAL: 'Частичная занятость',
+            PROJECT: 'Проектная/Временная работа',
+            VOLUNTEERING: 'Волонтерство',
+            INTERNSHIP: 'Стажировка'
+          }
+          value = items[value]
+        }
+        if (key === 'workSchedule') {
+          const items = {
+            FULL_TIME: 'Полный день',
+            SHIFT_WORK: 'Сменный график',
+            FLEXIBLE_SCHEDULE: 'Гибкий график',
+            REMOTE_WORK: 'Удаленная работа',
+            TOUR: 'Вахтовый метод'
+          }
+          value = items[value]
+        }
+        const td = document.createElement('td')
+        td.appendChild(document.createTextNode(value))
+        tr.appendChild(td)
+      })
+      tbody.appendChild(tr)
+    })
+    tb.appendChild(tbody)
+
+    const table = TableExport(tb, { exportButtons: false, formats: ['csv'] })
+    const CSV = table.CONSTANTS.FORMAT.CSV
+    const exportDataCSV = table.getExportData()[tb.getAttribute('tableexport-key')][CSV]
+    table.export2file(exportDataCSV.data, exportDataCSV.mimeType, exportDataCSV.filename, exportDataCSV.fileExtension)
+  }
 
   render () {
     const columns = [
@@ -145,7 +202,10 @@ export default class UserList extends PureComponent {
     return (
       <Container>
         <BreadCrumbs items={this.state.breadcrumbs}/>
-        <Title>Список пользователей</Title>
+        <Title>
+          Список пользователей
+          <Button onClick={this.export}>Выгрузить</Button>
+        </Title>
         <ReactTable
           data={this.props.users}
           columns={columns}
