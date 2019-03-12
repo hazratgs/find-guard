@@ -24,7 +24,7 @@ export const Container = styled.div`
   }
 
   ${props => props.small && `
-    width: 210px;
+    width: 260px;
   `}
 
   ${props => props.error && `
