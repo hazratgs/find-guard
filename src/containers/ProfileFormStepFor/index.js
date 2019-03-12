@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { changeAccount, fileUpload, accountRegister, saveAccount } from '../../actions/account'
-import { Container, ButtonWrapper, AppTerms } from './styles'
+import { Container, ButtonWrapper, AppTerms, ErrorMessage } from './styles'
 import DropZone from '../../components/DropZone'
 import Button from '../../components/StepButton'
 import Dots from '../../components/Dots'
@@ -13,7 +13,8 @@ import BackButton from '../../components/BackButton'
 @connect(
   state => ({
     account: state.account.account,
-    editAccount: state.account.editAccount
+    editAccount: state.account.editAccount,
+    errorSaveAccount: state.account.errorSaveAccount
   }),
   dispatch => ({
     changeAccount: bindActionCreators(changeAccount, dispatch),
@@ -88,6 +89,9 @@ export default class ProfileFormStepFor extends PureComponent {
           </AppTerms>
         </ButtonWrapper>
         <Dots active={3} />
+        {this.props.errorSaveAccount && (
+          <ErrorMessage>Возникла ошибка, попробуйте отправить форму позже</ErrorMessage>
+        )}
       </Fragment>
     )
   }

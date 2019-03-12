@@ -37,3 +37,9 @@ export const AppTerms = styled.p`
     }
   }
 `
+
+export const ErrorMessage = styled.p`
+  color: red;
+  padding: 20px 0;
+  font-size: 13px;
+`

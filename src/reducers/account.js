@@ -36,7 +36,8 @@ const initialState = {
   errorForgotPassword: false,
   account: account,
   errorAccount: false,
-  editAccount: false
+  editAccount: false,
+  errorSaveAccount: false
 }
 
 const handleSuccessLogin = (state, payload) => ({
@@ -119,6 +120,11 @@ const handleEditAccount = (state) => ({
   editAccount: true
 })
 
+const handleErrorSaveAccount = (state) => ({
+  ...state,
+  errorSaveAccount: true
+})
+
 const reducer = createReducer({
   [actions.successLogin]: handleSuccessLogin,
   [actions.errorLogin]: handleErrorLogin,
@@ -130,7 +136,8 @@ const reducer = createReducer({
   [actions.successForgotPassword]: handleSuccessForgotPassword,
   [actions.errorForgotPassword]: handleErrorForgotPassword,
   [actions.logout]: handleLogout,
-  [actions.editAccount]: handleEditAccount
+  [actions.editAccount]: handleEditAccount,
+  [actions.errorSaveAccount]: handleErrorSaveAccount
 }, initialState)
 
 export default reducer
