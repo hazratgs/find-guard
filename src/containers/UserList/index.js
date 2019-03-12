@@ -45,7 +45,45 @@ export default class UserList extends PureComponent {
   export = () => {
     const tb = document.createElement('table')
     const tbody = document.createElement('tbody')
-    const keys = ['id', 'middleName', 'birthDate', 'sex', 'phone', 'driverLicenseNumber', 'gunLicenseNumber', 'experienceYears', 'employmentType', 'workSchedule', 'desiredSalary', 'comment', 'regionName', 'workRegionName']
+    const trHead = document.createElement('tr')
+    const tdItems = [
+      'ID Пользователя',
+      'ФИО',
+      'Дата рождения',
+      'Пол',
+      'Телефон',
+      '№ прав',
+      '№ лицензии на оружие',
+      'Опыт работы в сфере (лет)',
+      'Тип занятости',
+      'Желаемый график',
+      'Желаемый уровень зарплаты',
+      'Напишите немного о себе',
+      'Регион проживания',
+      'Желаемый регион работы'
+    ]
+    tdItems.map(item => {
+      const td = document.createElement('td')
+      td.appendChild(document.createTextNode(item))
+      trHead.appendChild(td)
+    })
+    tbody.appendChild(trHead)
+    const keys = [
+      'id',
+      'middleName',
+      'birthDate',
+      'sex',
+      'phone',
+      'driverLicense',
+      'gunLicenseNumber',
+      'experienceYears',
+      'employmentType',
+      'workSchedule',
+      'desiredSalary',
+      'comment',
+      'regionName',
+      'workRegionName'
+    ]
     this.props.users.map(item => {
       const tr = document.createElement('tr')
       Object.keys(item).map(key => {

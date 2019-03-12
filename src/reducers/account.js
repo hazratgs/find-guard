@@ -5,6 +5,7 @@ const account = {
   lastName: '',
   firstName: '',
   middleName: '',
+  _middleName: '',
   sex: '',
   birthDate: '',
   regionId: '',
@@ -34,14 +35,18 @@ const initialState = {
   successForgotPassword: false,
   errorForgotPassword: false,
   account: account,
-  errorAccount: false
+  errorAccount: false,
+  editAccount: false
 }
 
 const handleSuccessLogin = (state, payload) => ({
   ...state,
   login: true,
-  token: payload,
-  account: account,
+  token: payload.token,
+  account: {
+    ...account,
+    login: payload.login
+  },
   errorLogin: false
 })
 
@@ -57,7 +62,8 @@ const handleGetSuccessAccount = (state, payload) => ({
     ...state.account,
     ...payload
   },
-  errorAccount: false
+  errorAccount: false,
+  editAccount: true
 })
 
 const handleErrorGetAccount = (state) => ({
@@ -104,30 +110,13 @@ const handleLogout = (state) => ({
   register: false,
   successForgotPassword: false,
   errorForgotPassword: false,
-  account: {
-    lastName: '',
-    firstName: '',
-    middleName: '',
-    sex: '',
-    birthDate: '',
-    regionId: '',
-    workRegionId: '',
-    phone: '',
-    login: '',
-    email: '',
-    driverLicense: false,
-    driverLicenseNumber: '',
-    gunLicense: false,
-    gunLicenseNumber: '',
-    professionalArea: '',
-    experienceYears: '',
-    employmentType: '',
-    workSchedule: '',
-    desiredSalary: '',
-    comment: '',
-    files: []
-  },
+  account: account,
   errorAccount: false
+})
+
+const handleEditAccount = (state) => ({
+  ...state,
+  editAccount: true
 })
 
 const reducer = createReducer({
@@ -140,7 +129,8 @@ const reducer = createReducer({
   [actions.closeNotifRegister]: handleCloseNotifRegister,
   [actions.successForgotPassword]: handleSuccessForgotPassword,
   [actions.errorForgotPassword]: handleErrorForgotPassword,
-  [actions.logout]: handleLogout
+  [actions.logout]: handleLogout,
+  [actions.editAccount]: handleEditAccount
 }, initialState)
 
 export default reducer

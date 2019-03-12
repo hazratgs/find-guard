@@ -13,7 +13,8 @@ import Dots from '../../components/Dots'
 @connect(
   state => ({
     account: state.account.account,
-    regions: state.regions.data
+    regions: state.regions.data,
+    editAccount: state.account.editAccount
   }),
   dispatch => ({ changeAccount: bindActionCreators(changeAccount, dispatch) })
 )
@@ -87,7 +88,7 @@ export default class ProfileFormStepOne extends PureComponent {
 
   render () {
     const regions = this.props.regions.map((item) => ({ key: item.name, value: item.id }))
-
+    const [, , middleName] = this.state.middleName.split(' ')
     return (
       <Container>
         <Input
@@ -104,7 +105,7 @@ export default class ProfileFormStepOne extends PureComponent {
         />
         <Input
           name='Отчество'
-          defaultValue={this.state.middleName}
+          defaultValue={middleName || this.state.middleName}
           onChange={this.change('middleName')}
           error={this.state.errors.includes('middleName')}
         />

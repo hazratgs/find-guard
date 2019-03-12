@@ -16,7 +16,10 @@ import {
   FORGOT_PASSWORD,
   SUCCESS_FORGOT_PASSWORD,
   ERROR_FORGOT_PASSWORD,
-  LOGOUT
+  LOGOUT,
+  SAVE_ACCOUNT,
+  ERROR_SAVE_ACCOUNT,
+  EDIT_ACCOUNT
 } from '../constants/account'
 
 export const login = createAction(LOGIN)
@@ -43,3 +46,7 @@ export const successForgotPassword = createAction(SUCCESS_FORGOT_PASSWORD)
 export const errorForgotPassword = createAction(ERROR_FORGOT_PASSWORD)
 
 export const logout = createAction(LOGOUT)
+
+export const saveAccount = createAction(SAVE_ACCOUNT)
+export const errorSaveAccount = createAction(ERROR_SAVE_ACCOUNT)
+export const editAccount = createAction(EDIT_ACCOUNT)

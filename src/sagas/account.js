@@ -16,7 +16,7 @@ function* login (action) {
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     cookies.set('token', token, { expires: 7, path: '/' })
-    yield put(actions.successLogin(token))
+    yield put(actions.successLogin({ token, login: action.payload.username }))
     yield put(actions.getAccount())
   } catch (e) {
     yield put(actions.errorLogin())
@@ -42,9 +42,8 @@ function* isAuthenticate () {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       const request = yield call(GET, '/authenticate')
-
       if (request.data !== '') {
-        yield put(actions.successLogin(token))
+        yield put(actions.successLogin({ token }))
         yield put(actions.getAccount())
       }
     }
@@ -112,6 +111,23 @@ function* forgotPassword (action) {
   }
 }
 
+function* saveAccount () {
+  try {
+    const account = yield select(state => state.account.account)
+    const method = () => axios({
+      method: 'PUT',
+      url: `${api}/extra-users`,
+      data: JSON.stringify(account),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    yield call(method)
+  } catch (e) {
+    yield put(actions.errorSaveAccount())
+  }
+}
+
 export default function* watcher () {
   yield takeLatest(actions.login, login)
   yield takeLatest(actions.getAccount, getAccount)
@@ -119,4 +135,5 @@ export default function* watcher () {
   yield takeLatest(actions.fileUpload, fileUpload)
   yield takeLatest(actions.accountRegister, accountRegister)
   yield takeLatest(actions.forgotPassword, forgotPassword)
+  yield takeLatest(actions.saveAccount, saveAccount)
 }

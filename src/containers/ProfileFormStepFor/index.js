@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
-import { changeAccount, fileUpload, accountRegister } from '../../actions/account'
+import { changeAccount, fileUpload, accountRegister, saveAccount } from '../../actions/account'
 import { Container, ButtonWrapper, AppTerms } from './styles'
 import DropZone from '../../components/DropZone'
 import Button from '../../components/StepButton'
@@ -11,11 +11,15 @@ import BackButton from '../../components/BackButton'
 
 @withRouter
 @connect(
-  state => ({ account: state.account.account }),
+  state => ({
+    account: state.account.account,
+    editAccount: state.account.editAccount
+  }),
   dispatch => ({
     changeAccount: bindActionCreators(changeAccount, dispatch),
     fileUpload: bindActionCreators(fileUpload, dispatch),
-    accountRegister: bindActionCreators(accountRegister, dispatch)
+    accountRegister: bindActionCreators(accountRegister, dispatch),
+    saveAccount: bindActionCreators(saveAccount, dispatch)
   })
 )
 export default class ProfileFormStepFor extends PureComponent {
@@ -56,7 +60,11 @@ export default class ProfileFormStepFor extends PureComponent {
 
       // this.props.history.push('/profile')
       this.props.changeAccount(data)
-      this.props.accountRegister()
+      if (this.props.editAccount) {
+        this.props.saveAccount()
+      } else {
+        this.props.accountRegister()
+      }
       // this.props.fileUpload(this.state.files)
     } else {
       this.setState({ errors })
@@ -72,7 +80,7 @@ export default class ProfileFormStepFor extends PureComponent {
         <ButtonWrapper>
           <BackButton to='/profile/form/step/2' />
           <Button handle={this.send}>
-            <span>Отправить</span>
+            <span>{!this.props.editAccount ? 'Отправить' : 'Сохранить'}</span>
             <img src='/img/form-check.svg' />
           </Button>
           <AppTerms>

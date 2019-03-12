@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { editAccount } from '../../actions/account'
 import { withRouter } from 'react-router-dom'
 import {
   Container,
@@ -16,10 +18,15 @@ import BreadCrumbs from '../../components/BreadCrumbs'
 import Notif from '../../components/Notif'
 
 @withRouter
-@connect(state => ({
-  account: state.account.account,
-  regions: state.regions.data
-}))
+@connect(
+  state => ({
+    account: state.account.account,
+    regions: state.regions.data
+  }),
+  dispatch => ({
+    editAccount: bindActionCreators(editAccount, dispatch)
+  })
+)
 export default class ProfilePage extends PureComponent {
   state = {
     breadcrumbs: [
@@ -77,7 +84,6 @@ export default class ProfilePage extends PureComponent {
     const regions = this.props.regions.map((item) => ({ key: item.name, value: item.id }))
     if (key === 'Регион проживания' || key === 'Желаемый регион работы') {
       const [find] = regions.filter(item => item.value === parseInt(value))
-      console.log(find)
       return find.key
     }
     if (key === 'Пол') return value === 'MALE' ? 'Мужской' : 'Женский'
@@ -113,6 +119,8 @@ export default class ProfilePage extends PureComponent {
     return value
   }
 
+  edit = () => this.props.editAccount()
+
   render () {
     const { account } = this.props
     const items = this.state.about.map((item, i) => (
@@ -131,7 +139,10 @@ export default class ProfilePage extends PureComponent {
         <BreadCrumbs items={this.state.breadcrumbs}/>
         <Notif />
         <Title>{account.middleName}</Title>
-        <ReadButton to='/profile/form'>
+        <ReadButton
+          to='/profile/form'
+          onClick={this.edit}
+        >
           <img src='/img/read.svg'/>
           Редактировать данные
         </ReadButton>
