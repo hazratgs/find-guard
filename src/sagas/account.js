@@ -126,7 +126,7 @@ function* saveAccount () {
     yield call(method)
   } catch (e) {
     yield put(actions.errorSaveAccount())
-    yield put(actions.getAccount())
+    yield put(actions.restoreAccount())
     yield delay(3000)
     yield put(push('/profile'))
   }

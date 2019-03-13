@@ -35,6 +35,7 @@ const initialState = {
   successForgotPassword: false,
   errorForgotPassword: false,
   account: account,
+  backupAccount: {},
   errorAccount: false,
   editAccount: false,
   errorSaveAccount: false
@@ -118,12 +119,23 @@ const handleLogout = (state) => ({
 
 const handleEditAccount = (state) => ({
   ...state,
-  editAccount: true
+  editAccount: true,
+  backupAccount: {
+    ...state.account
+  }
 })
 
 const handleErrorSaveAccount = (state) => ({
   ...state,
   errorSaveAccount: true
+})
+
+const handleRestoreAccount = (state) => ({
+  ...state,
+  account: {
+    ...state.backupAccount
+  },
+  backupAccount: {}
 })
 
 const reducer = createReducer({
@@ -138,7 +150,8 @@ const reducer = createReducer({
   [actions.errorForgotPassword]: handleErrorForgotPassword,
   [actions.logout]: handleLogout,
   [actions.editAccount]: handleEditAccount,
-  [actions.errorSaveAccount]: handleErrorSaveAccount
+  [actions.errorSaveAccount]: handleErrorSaveAccount,
+  [actions.restoreAccount]: handleRestoreAccount
 }, initialState)
 
 export default reducer
