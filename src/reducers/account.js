@@ -112,7 +112,8 @@ const handleLogout = (state) => ({
   successForgotPassword: false,
   errorForgotPassword: false,
   account: account,
-  errorAccount: false
+  errorAccount: false,
+  editAccount: false
 })
 
 const handleEditAccount = (state) => ({
