@@ -88,7 +88,10 @@ export default class ProfileFormStepOne extends PureComponent {
 
   render () {
     const regions = this.props.regions.map((item) => ({ key: item.name, value: item.id }))
+    regions.splice(3, 0, { key: '____________________________________________________________________', value: '' })
+    regions.splice(4, 0, { key: '', value: '' })
     const [, , middleName] = this.state.middleName.split(' ')
+
     return (
       <Container>
         <Input

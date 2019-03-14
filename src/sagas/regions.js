@@ -9,7 +9,7 @@ const GET = (method) => axios.get(`${api}${method}`)
 
 function* getRegions () {
   try {
-    const request = yield call(GET, '/regions')
+    const request = yield call(GET, '/regions?size=200')
     const regions = request.data
     yield put(actions.successRegions(regions))
   } catch (e) {

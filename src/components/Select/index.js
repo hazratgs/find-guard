@@ -23,7 +23,7 @@ export default class Select extends PureComponent {
   render () {
     const { name, mask, small, error, defaultValue } = this.props
     const items = this.props.items.map((item, i) => (
-      <option key={i} value={item.value}>{item.key}</option>
+      <option key={i} value={item.value} disabled={!item.value}>{item.key}</option>
     ))
 
     return (

@@ -25,7 +25,7 @@ export default class Notif extends PureComponent {
         <Close onClick={this.close} />
         <div>
           <Title>Ваша заявка принята.</Title>
-          <Description>В ближайшее время с Вами сяжется наш менеджер</Description>
+          <Description>В ближайшее время с Вами свяжется наш менеджер</Description>
         </div>
       </Container>
     )
