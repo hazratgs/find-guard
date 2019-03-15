@@ -37,12 +37,12 @@ export default class Register extends PureComponent {
   }
 
   change = (name) => (e) => {
-    this.setState({ [name]: e.target.value }, () => this.buttonStatus())
+    this.setState({ [name]: e.target.value }, this.buttonStatus)
   }
 
   buttonStatus = () => {
     const errors = []
-    if (!isEmail(this.state.email)) errors.push('email')
+    if (this.state.email === null || !isEmail(this.state.email)) errors.push('email')
     if (this.state.password !== null && this.state.password.length < 6) errors.push('password')
     if (this.state.confirmPassword !== null && this.state.confirmPassword.length === 0) errors.push('confirmPassword')
     if (this.state.confirmPassword !== this.state.password) errors.push('confirmPassword')
@@ -58,7 +58,6 @@ export default class Register extends PureComponent {
       if (nullStatus) return false
       return !errors.length
     }
-
     this.setState({ errors: errors, buttonStatus: button() })
   }
 

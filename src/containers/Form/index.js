@@ -68,7 +68,10 @@ export default class FormWrapper extends PureComponent {
               </Agreement>
             )}
             {this.props.checkbox && (
-              <Label onChange={(e) => this.props.change('checkbox')({ target: { value: e.target.checked } })}>
+              <Label onChange={(e) => {
+                const checked = { target: { value: e.target.checked } }
+                return this.props.change('checkbox')(checked)
+              }}>
                 <input type='checkbox' />
                 <span>{this.props.checkbox}</span>
               </Label>
