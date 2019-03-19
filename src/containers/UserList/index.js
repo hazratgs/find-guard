@@ -52,7 +52,7 @@ export default class UserList extends PureComponent {
       'Дата рождения',
       'Пол',
       'Телефон',
-      '№ прав',
+      'Водительское удостоверение',
       'Разрешение на работу с оружием',
       'Опыт работы в сфере (лет)',
       'Тип занятости',
@@ -75,7 +75,7 @@ export default class UserList extends PureComponent {
       'sex',
       'phone',
       'driverLicense',
-      'gunLicenseNumber',
+      'gunLicense',
       'experienceYears',
       'employmentType',
       'workSchedule',
@@ -90,6 +90,8 @@ export default class UserList extends PureComponent {
         if (!keys.includes(key)) return null
         let value = item[key]
         if (key === 'sex') value = value === 'MALE' ? 'Мужской' : 'Женский'
+        if (key === 'driverLicense') value = value ? 'Да' : 'Нет'
+        if (key === 'gunLicense') value = value ? 'Да' : 'Нет'
         if (key === 'experienceYears') {
           const items = {
             0: 'Нет опыта',
