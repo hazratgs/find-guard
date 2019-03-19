@@ -14,7 +14,7 @@ export const Container = styled.div`
 `
 
 export const Wrapper = styled.div`
-  width: 100%;
+  width: 80px;
   height: 100%;
   position: fixed;
   top: 0;
