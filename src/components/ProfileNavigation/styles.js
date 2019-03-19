@@ -23,6 +23,7 @@ export const Wrapper = styled.div`
   @media (max-width: 768px) {
     position: relative;
     height: auto;
+    width: 100%;
   }
 `
 
