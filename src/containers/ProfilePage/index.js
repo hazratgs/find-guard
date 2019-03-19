@@ -47,7 +47,7 @@ export default class ProfilePage extends PureComponent {
       { key: 'Электронная почта', value: '' },
       { key: 'Желаемый график', value: '' },
       { key: 'Желаемый регион работы', value: '' },
-      { key: 'Разрешение на оружие', value: '' },
+      { key: 'Разрешение на работу с оружием', value: '' },
       { key: 'Желаемый уровень зарплаты', value: '' },
       { key: 'Дата рождения', value: '' },
       { key: 'Водительские права', value: '' },
@@ -68,7 +68,7 @@ export default class ProfilePage extends PureComponent {
           { key: 'Электронная почта', value: account.email },
           { key: 'Желаемый график', value: account.workSchedule },
           { key: 'Желаемый регион работы', value: account.workRegionId },
-          { key: 'Разрешение на оружие', value: account.gunLicense },
+          { key: 'Разрешение на работу с оружием', value: account.gunLicense },
           { key: 'Желаемый уровень зарплаты', value: account.desiredSalary },
           { key: 'Дата рождения', value: account.birthDate },
           { key: 'Водительские права', value: account.driverLicense },
@@ -116,7 +116,7 @@ export default class ProfilePage extends PureComponent {
       }
       return items[value]
     }
-    if (key === 'Разрешение на оружие') return value ? 'Да' : 'Нет'
+    if (key === 'Разрешение на работу с оружием') return value ? 'Да' : 'Нет'
     if (key === 'Водительские права') return value ? 'Да' : 'Нет'
     return value
   }
