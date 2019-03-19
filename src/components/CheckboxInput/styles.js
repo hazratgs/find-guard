@@ -21,6 +21,13 @@ export const Label = styled.label`
   cursor: pointer;
   height: 100%;
 
+  ${props => props.checked && `
+    position: absolute;
+    right: 10px;
+    z-index: 20;
+    top: 0;
+  `}
+
   input {
     display: none;
 
@@ -44,7 +51,7 @@ export const Label = styled.label`
     background-repeat: no-repeat;
 
     ${props => props.checked && `
-      background-color: #fff;
+      background-color: #EFEFEF;
     `}
   }
 `

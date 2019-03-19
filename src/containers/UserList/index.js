@@ -53,7 +53,7 @@ export default class UserList extends PureComponent {
       'Пол',
       'Телефон',
       '№ прав',
-      '№ лицензии на оружие',
+      'Разрешение на работу с оружием',
       'Опыт работы в сфере (лет)',
       'Тип занятости',
       'Желаемый график',
@@ -161,12 +161,14 @@ export default class UserList extends PureComponent {
             accessor: 'phone'
           },
           {
-            Header: '№ прав',
-            accessor: 'driverLicenseNumber'
+            Header: 'Водительские права',
+            accessor: 'driverLicense',
+            Cell: (props) => props.value ? 'Да' : 'Нет'
           },
           {
-            Header: '№ лицензии на оружие',
-            accessor: 'gunLicenseNumber'
+            Header: 'Разрешение на работу с оружием',
+            accessor: 'gunLicense',
+            Cell: (props) => props.value ? 'Да' : 'Нет'
           },
           {
             Header: 'Опыт работы в сфере (лет)',

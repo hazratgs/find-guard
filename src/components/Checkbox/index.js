@@ -1,21 +1,18 @@
 import React, { PureComponent } from 'react'
 import { Container, Label } from './styles'
-import Input from '../Input'
 
 export default class Checkbox extends PureComponent {
   static getDerivedStateFromProps (props, state) {
-    if (!state.checked && props.defaultValue && props.defaultValueInput) {
+    if (!state.checked && props.defaultValue) {
       return {
-        checked: props.defaultValue,
-        value: props.defaultValueInput
+        checked: props.defaultValue
       }
     }
     return null
   }
 
   state = {
-    checked: false,
-    value: ''
+    checked: false
   }
 
   change = (e) => {
@@ -23,27 +20,11 @@ export default class Checkbox extends PureComponent {
     this.props.onChange(e.target.checked)
   }
 
-  changeInput = (value) => {
-    this.setState({ value: value })
-    this.props.changeInput(value)
-  }
-
   render () {
     return (
-      <Container checked={this.state.checked}>
-        {this.state.checked && (
-          <Input
-            name={this.props.placeholder}
-            mask={this.props.mask}
-            defaultValue={this.state.value}
-            onChange={this.changeInput}
-            error={this.props.error}
-          />
-        )}
+      <Container>
         <Label checked={this.state.checked}>
-          {!this.state.checked && (
-            <span>{this.props.text}</span>
-          )}
+          <span>{this.props.text}</span>
           <input
             onChange={this.change}
             type='checkbox'

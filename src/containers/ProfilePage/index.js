@@ -68,10 +68,10 @@ export default class ProfilePage extends PureComponent {
           { key: 'Электронная почта', value: account.email },
           { key: 'Желаемый график', value: account.workSchedule },
           { key: 'Желаемый регион работы', value: account.workRegionId },
-          { key: 'Разрешение на оружие', value: '№ ' + account.gunLicenseNumber },
+          { key: 'Разрешение на оружие', value: account.gunLicense },
           { key: 'Желаемый уровень зарплаты', value: account.desiredSalary },
           { key: 'Дата рождения', value: account.birthDate },
-          { key: 'Водительские права', value: '№ ' + account.driverLicenseNumber },
+          { key: 'Водительские права', value: account.driverLicense },
           { key: '', value: '' },
           { key: 'Опыт работы в сфере (лет)', value: account.experienceYears }
         ]
@@ -84,7 +84,7 @@ export default class ProfilePage extends PureComponent {
     const regions = this.props.regions.map((item) => ({ key: item.name, value: item.id }))
     if (key === 'Регион проживания' || key === 'Желаемый регион работы') {
       const [find] = regions.filter(item => item.value === parseInt(value))
-      return find.key
+      if (find) return find.key
     }
     if (key === 'Пол') return value === 'MALE' ? 'Мужской' : 'Женский'
     if (key === 'Опыт работы в сфере (лет)') {
@@ -116,17 +116,20 @@ export default class ProfilePage extends PureComponent {
       }
       return items[value]
     }
+    if (key === 'Разрешение на оружие') return value ? 'Да' : 'Нет'
+    if (key === 'Водительские права') return value ? 'Да' : 'Нет'
     return value
   }
 
   edit = () => this.props.editAccount()
 
   render () {
+    console.log('props', this.props)
     const { account } = this.props
     const items = this.state.about.map((item, i) => (
       <AboutItem key={i}>
         <Small>{item.key}</Small>
-        <strong>{!item.value ? '' : item.key === '' ? '' : this.normalize(item.key, item.value)}</strong>
+        <strong>{this.normalize(item.key, item.value)}</strong>
       </AboutItem>
     ))
 

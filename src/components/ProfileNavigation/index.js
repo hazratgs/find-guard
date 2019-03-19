@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { array } from 'prop-types'
-import { Container, Logo, NavWrapper, NavItem } from './styles'
+import { Container, Wrapper, Logo, NavWrapper, NavItem } from './styles'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import ExitButton from '../ExitButton'
@@ -24,11 +24,13 @@ export default class ProfileNavigation extends PureComponent {
 
     return (
       <Container>
-        <Logo to='/'/>
-        <NavWrapper>
-          {items}
-        </NavWrapper>
-        <ExitButton />
+        <Wrapper>
+          <Logo to='/' />
+          <NavWrapper>
+            {items}
+          </NavWrapper>
+          <ExitButton />
+        </Wrapper>
       </Container>
     )
   }

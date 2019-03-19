@@ -54,7 +54,6 @@ export default class ProfileFormStepThree extends PureComponent {
     if (state.employmentType === '') errors.push('employmentType')
     if (state.workSchedule === '') errors.push('workSchedule')
     if (state.desiredSalary === '') errors.push('desiredSalary')
-    if (state.comment === '') errors.push('comment')
 
     if (!errors.length) {
       const data = {

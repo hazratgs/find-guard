@@ -3,11 +3,25 @@ import { NavLink } from 'react-router-dom'
 
 export const Container = styled.div`
   width: 80px;
-  height: 100vh;
+  min-height: 100%;
   background-color: #191C23;
 
   @media (max-width: 768px) {
     width: 100%;
+    height: auto;
+    min-height: auto;
+  }
+`
+
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  @media (max-width: 768px) {
+    position: relative;
     height: auto;
   }
 `

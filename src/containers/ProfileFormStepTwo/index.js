@@ -63,10 +63,9 @@ export default class ProfileFormStepTwo extends PureComponent {
     if (state.phone === '') errors.push('phone')
     if (state.email === '') errors.push('email')
     if (!isEmail(state.email)) errors.push('email')
-    // if (state.professionalArea === '') errors.push('professionalArea')
     if (state.experienceYears === '') errors.push('experienceYears')
-    if (state.driverLicense && state.driverLicenseNumber.replace(/\D+/g, '').length !== 10) errors.push('driverLicenseNumber')
-    if (state.gunLicense && state.gunLicenseNumber.replace(/\D+/g, '').length !== 7) errors.push('gunLicenseNumber')
+    // if (state.driverLicense && state.driverLicenseNumber.replace(/\D+/g, '').length !== 10) errors.push('driverLicenseNumber')
+    // if (state.gunLicense && state.gunLicenseNumber.replace(/\D+/g, '').length !== 7) errors.push('gunLicenseNumber')
 
     if (!errors.length) {
       const data = {
@@ -106,29 +105,13 @@ export default class ProfileFormStepTwo extends PureComponent {
         <Checkbox
           text='У вас есть водительские права?'
           defaultValue={this.state.driverLicense}
-          defaultValueInput={this.state.driverLicenseNumber}
-          mask='99 99 999999'
-          placeholder='№ водительского удостоверения'
           onChange={this.change('driverLicense')}
-          changeInput={this.change('driverLicenseNumber')}
-          error={this.state.errors.includes('driverLicenseNumber')}
         />
         <Checkbox
           text='У вас есть разрешение на оружие?'
           defaultValue={this.state.gunLicense}
-          defaultValueInput={this.state.gunLicenseNumber}
           onChange={this.change('gunLicense')}
-          mask='9999999'
-          placeholder='№ разрешения на оружия'
-          changeInput={this.change('gunLicenseNumber')}
-          error={this.state.errors.includes('gunLicenseNumber')}
         />
-        {/* <Input
-          name='Профессиональная область'
-          defaultValue={this.state.professionalArea}
-          onChange={this.change('professionalArea')}
-          error={this.state.errors.includes('professionalArea')}
-        /> */}
         <Select
           items={[
             { key: '', value: '' },
