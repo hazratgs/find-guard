@@ -86,7 +86,7 @@ export default class ProfilePage extends PureComponent {
       const [find] = regions.filter(item => item.value === parseInt(value))
       if (find) return find.key
     }
-    if (key === 'Пол') return value === 'MALE' ? 'Мужской' : 'Женский'
+    if (key === 'Пол') return value === '' ? '' : value ? 'Мужской' : 'Женский'
     if (key === 'Опыт работы в сфере (лет)') {
       const items = {
         0: 'Нет опыта',
