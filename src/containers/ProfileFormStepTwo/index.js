@@ -108,7 +108,7 @@ export default class ProfileFormStepTwo extends PureComponent {
           onChange={this.change('driverLicense')}
         />
         <Checkbox
-          text='Разрешение на работу с оружием'
+          text='У вас есть разрешение на работу с оружием?'
           defaultValue={this.state.gunLicense}
           onChange={this.change('gunLicense')}
         />
