@@ -72,6 +72,10 @@ export const Text = styled.div`
   width: 532px;
   padding-bottom: 40px;
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
   p {
     font-family: Ubuntu;
     font-style: normal;

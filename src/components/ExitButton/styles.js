@@ -30,4 +30,11 @@ export const Container = styled(Link)`
     color: #fff;
     font-weight: 300;
   }
+
+  @media (max-width: 768px) {
+    right: 0;
+    top: 0;
+    width: 60px;
+    height: 60px;
+  }
 `
