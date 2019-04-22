@@ -8,6 +8,7 @@
     "build": "webpack --mode production --config webpack/webpack.config.js --env production",
     "server": "NODE_ENV=production node ./server/index.js",
     "deploy": "aws s3 sync build/ s3://guard.hazratgs.com",
+    "deploy-server": "scp -r build/* ec2:/var/www/guard.hazratgs.com/",
     "serv": "static build",
     "test": "jest",
     "jest": "jest --watch"
